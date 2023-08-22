@@ -4,7 +4,7 @@
 
 
 
-Network Working Group                                   C. Alaettinoglu         嶺
+Network Working Group                                   C. Alaettinoglu         🤷 Begin of skip
 Request for Comments: 2622           USC/Information Sciences Institute
 Obsoletes: 2280                                           C. Villamizar
 Category: Standards Track                                 Avici Systems
@@ -179,7 +179,7 @@ RFC 2622                          RPSL                         June 1999
    were originally defined in earlier documents [6, 13, 16, 12, 5] and
    have all been enhanced.
 
-   This document is self-contained.  However, the reader is encouraged          寧
+   This document is self-contained.  However, the reader is encouraged          🤷 End of skip
    to read RIPE-181 [7] and the associated documents [13, 16, 12, 5] as
    they provide significant background as to the motivation and
    underlying principles behind RIPE-181 and consequently, RPSL. For a
@@ -301,7 +301,7 @@ RFC 2622                          RPSL                         June 1999
                 {128.9.0.0/16^20-24}^18-22 == {128.9.0.0/16^20-22}
                 {128.9.0.0/16^20-24}^18-19 == {}
 
-   <date>
+   <date>                                                                       🤷 Begin of skip
       A date is represented as an eight digit integer of the form
       YYYYMMDD where YYYY represents the year, MM represents the month
       of the year (01 through 12), and DD represents the day of the
@@ -323,9 +323,9 @@ RFC 2622                          RPSL                         June 1999
       name of a mntner object.
 
    <registry-name> is a name of an IRR registry.  The routing registries
-      are listed in Appendix A.
+      are listed in Appendix A.                                                 🤷 End of skip
 
-   A value of an attribute may also be a list of one of these types.  A
+   A value of an attribute may also be a list of one of these types.  A         👌
    list is represented by separating the list members by commas ",".
    For example, "AS1, AS2, AS3, AS4" is a list of AS numbers.  Note that
    being list valued and being multiple valued are orthogonal.  A
@@ -340,7 +340,7 @@ Alaettinoglu, et al.        Standards Track                     [Page 6]
 RFC 2622                          RPSL                         June 1999
 
 
-   An RPSL object is textually represented as a list of attribute-value
+   An RPSL object is textually represented as a list of attribute-value         👌
    pairs.  Each attribute-value pair is written on a separate line.  The
    attribute name starts at column 0, followed by character ":" and
    followed by the value of the attribute.  The attribute which has the
@@ -353,23 +353,23 @@ RFC 2622                          RPSL                         June 1999
    be used after the continuation character to increase readability.
    The order of attribute-value pairs is significant.
 
-   An object's description may contain comments.  A comment can be
+   An object's description may contain comments.  A comment can be              👌
    anywhere in an object's definition, it starts at the first "#"
    character on a line and ends at the first end-of-line character.
    White space characters can be used to improve readability.
 
-   An integer can be specified using (1) the C programming language
-   notation (e.g. 1, 12345); (2) sequence of four 1-octet integers (in
+   An integer can be specified using (1) the C programming language             👌
+   notation (e.g. 1, 12345); (2) sequence of four 1-octet integers (in          🤷
    the range from 0 to 255) separated by the character dot "."  (e.g.
    1.1.1.1, 255.255.0.0), in this case a 4-octet integer is formed by
    concatenating these 1-octet integers in the most significant to least
-   significant order; (3) sequence of two 2-octet integers (in the range
+   significant order; (3) sequence of two 2-octet integers (in the range        🤷
    from 0 to 65535) separated by the character colon ":" (e.g. 3561:70,
    3582:10), in this case a 4-octet integer is formed by concatenating
    these 2-octet integers in the most significant to least significant
    order.
 
-3 Contact Information
+3 Contact Information                                                           🤷
 
    The mntner, person and role classes, admin-c, tech-c, mnt-by,
    changed, and source attributes of all classes describe contact
@@ -383,7 +383,7 @@ RFC 2622                          RPSL                         June 1999
    Policy System Security" document [20] describes the authenticaiton
    and authorization model in more detail.
 
-3.1 mntner Class
+3.1 mntner Class                                                                🤷
 
    The mntner class specifies authenticaiton information required to
    create, delete and update RPSL objects.  A provider, before he/she
@@ -508,7 +508,7 @@ Alaettinoglu, et al.        Standards Track                     [Page 9]
 RFC 2622                          RPSL                         June 1999
 
 
-3.2 person Class
+3.2 person Class                                                                🤷
 
    A person class is used to describe information about people.  Even
    though it does not describe routing policy, we still describe it here
@@ -564,7 +564,7 @@ Alaettinoglu, et al.        Standards Track                    [Page 10]
 RFC 2622                          RPSL                         June 1999
 
 
-3.3 role Class
+3.3 role Class                                                                  🤷
 
    The role class is similar to the person object.  However, instead of
    describing a human being, it describes a role performed by one or
@@ -620,7 +620,7 @@ Alaettinoglu, et al.        Standards Track                    [Page 11]
 RFC 2622                          RPSL                         June 1999
 
 
-4 route Class
+4 route Class                                                                   🤷 Not recorded
 
    Each interAS route (also referred to as an interdomain route)
    originated by an AS is specified using a route object.  The
@@ -682,7 +682,7 @@ RFC 2622                          RPSL                         June 1999
    For this purpose we define as-set, route-set, rtr-set, filter-set,
    and peering-set classes.  These classes define a named set.  The
    members of these sets can be specified either directly by listing
-   them in the sets' definition, or indirectly by having member objects
+   them in the sets' definition, or indirectly by having member objects         TODO
    refer to the sets' names, or a combination of both methods.
 
    A set's name is an rpsl word with the following restrictions: All
@@ -692,7 +692,7 @@ RFC 2622                          RPSL                         June 1999
    start with prefix "prng-".  For example, as-foo is a valid as-set
    name.
 
-   Set names can also be hierarchical.  A hierarchical set name is a
+   Set names can also be hierarchical.  A hierarchical set name is a            👌
    sequence of set names and AS numbers separated by colons ":".  At
    least one component of such a name must be an actual set name (i.e.
    start with one of the prefixes above).  All the set name components
@@ -700,7 +700,7 @@ RFC 2622                          RPSL                         June 1999
    following names are valid: AS1:AS-CUSTOMERS, AS1:RS-EXPORT:AS2, RS-
    EXCEPTIONS:RS-BOGUS.
 
-   The purpose of an hierarchical set name is to partition the set name
+   The purpose of an hierarchical set name is to partition the set name         🤷
    space so that the maintainers of the set X1 controls the whole set
    name space underneath, i.e. X1:...:Xn-1.  Thus, a set object with
    name X1:...:Xn-1:Xn can only be created by the maintainer of the
@@ -734,7 +734,7 @@ RFC 2622                          RPSL                         June 1999
 
 5.1 as-set Class
 
-   The attributes of the as-set class are shown in Figure 9.  The as-set
+   The attributes of the as-set class are shown in Figure 9.  The as-set        👌
    attribute defines the name of the set.  It is an RPSL name that
    starts with "as-".  The members attribute lists the members of the
    set.  The members attribute is a list of AS numbers, or other as-set
@@ -762,7 +762,7 @@ RFC 2622                          RPSL                         June 1999
                         Figure 10:  as-set objects.
 
    The mbrs-by-ref attribute is a list of maintainer names or the
-   keyword ANY.  If this attribute is used, the AS set also includes
+   keyword ANY.  If this attribute is used, the AS set also includes            TODO
    ASes whose aut-num objects are registered by one of these maintainers
    and whose member-of attribute refers to the name of this AS set.  If
    the value of a mbrs-by-ref attribute is ANY, any AS object referring
