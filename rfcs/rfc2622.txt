@@ -796,7 +796,7 @@ RFC 2622                          RPSL                         June 1999
 
 5.2 route-set Class
 
-   The attributes of the route-set class are shown in Figure 12.  The
+   The attributes of the route-set class are shown in Figure 12.  The           👌
    route-set attribute defines the name of the set.  It is an RPSL name
    that starts with "rs-".  The members attribute lists the members of
    the set.  The members attribute is a list of address prefixes or
@@ -820,7 +820,7 @@ RFC 2622                          RPSL                         June 1999
    The set rs-bar contains the members of the set rs-foo and the address
    prefix 128.7.0.0/16.
 
-   An address prefix or a route-set name in a members attribute can be
+   An address prefix or a route-set name in a members attribute can be          👌
    optionally followed by a range operator.  For example, the following
    set:
 
@@ -853,7 +853,7 @@ RFC 2622                          RPSL                         June 1999
    set rs-foo.
 
    The mbrs-by-ref attribute is a list of maintainer names or the
-   keyword ANY.  If this attribute is used, the route set also includes
+   keyword ANY.  If this attribute is used, the route set also includes         TODO
    address prefixes whose route objects are registered by one of these
    maintainers and whose member-of attribute refers to the name of this
    route set.  If the value of a mbrs-by-ref attribute is ANY, any route
@@ -900,14 +900,14 @@ Alaettinoglu, et al.        Standards Track                    [Page 16]
 RFC 2622                          RPSL                         June 1999
 
 
-   Note that, if an address prefix is listed in a members attribute of a
+   Note that, if an address prefix is listed in a members attribute of a        🤷
    route set, it is a member of that route set.  The route object
    corresponding to this address prefix does not need to contain a
    member-of attribute referring to this set name.  The member-of
    attribute of the route class is an additional mechanism for
    specifying the members indirectly.
 
-5.3 Predefined Set Objects
+5.3 Predefined Set Objects                                                      👌
 
    In a context that expects a route set (e.g.  members attribute of the
    route-set class), an AS number ASx defines the set of routes that are
@@ -924,12 +924,12 @@ RFC 2622                          RPSL                         June 1999
 
           Figure 15:  Use of AS numbers and AS sets in route sets.
 
-   The set rs-any contains all routes registered in IRR. The set as-any
+   The set rs-any contains all routes registered in IRR. The set as-any         🤷 rs-any not used so not handled
    contains all ASes registered in IRR.
 
 5.4 Filters and filter-set Class
 
-   The attributes of the filter-set class are shown in Figure 16.  A
+   The attributes of the filter-set class are shown in Figure 16.  A            👌
    filter-set object defines a set of routes that are matched by its
    filter.  The filter-set attribute defines the name of the filter.  It
    is an RPSL name that starts with "fltr-".
@@ -956,7 +956,7 @@ Alaettinoglu, et al.        Standards Track                    [Page 17]
 RFC 2622                          RPSL                         June 1999
 
 
-   The filter attribute defines the set's policy filter.  A policy
+   The filter attribute defines the set's policy filter.  A policy              👌
    filter is a logical expression which when applied to a set of routes
    returns a subset of these routes.  We say that the policy filter
    matches the subset returned.  The policy filter can match routes
@@ -970,7 +970,7 @@ RFC 2622                          RPSL                         June 1999
    ANY
       The keyword ANY matches all routes.
 
-   Address-Prefix Set This is an explicit list of address prefixes
+   Address-Prefix Set This is an explicit list of address prefixes              👌
       enclosed in braces '{' and '}'.  The policy filter matches the set
       of routes whose destination address-prefix is in the set.  For
       example:
@@ -992,7 +992,7 @@ RFC 2622                          RPSL                         June 1999
    30.9.0.0/16, and all the more specifics of 30.0.0.0/8 which are of
    length 24 to 32 such as 30.9.9.96/28.
 
-   Route Set Name  A route set name matches the set of routes that are
+   Route Set Name  A route set name matches the set of routes that are          👌
    members of the set.  A route set name may be a name of a route-set
    object, an AS number, or a name of an as-set object (AS numbers and
    as-set names implicitly define route sets; please see Section 5.3).
@@ -1033,7 +1033,7 @@ RFC 2622                          RPSL                         June 1999
    6.0.0.0/8^+ }, and AS1^- equals all the exclusive more specifics of
    routes originated by AS1.
 
-   AS Path Regular Expressions
+   AS Path Regular Expressions                                                  👌 Partial compliance
       An AS-path regular expression can be used as a policy filter by
       enclosing the expression in `<' and `>'.  An AS-path policy filter
       matches the set of routes which traverses a sequence of ASes
@@ -1071,7 +1071,7 @@ RFC 2622                          RPSL                         June 1999
    [...]
       is an AS number set.  It matches the AS-paths matched by the AS
       numbers listed between the brackets.  The AS numbers in the set
-      are separated by white space characters.  If a `-' is used between
+      are separated by white space characters.  If a `-' is used between        ❌ Not specifically handled
       two AS numbers in this set, all AS numbers between the two AS
       numbers are included in the set.  If an as-set name is listed, all
       AS numbers in the as-set are included.
@@ -1098,7 +1098,7 @@ RFC 2622                          RPSL                         June 1999
       of A. For example, [AS1 AS2]{2} matches AS1 AS1, AS1 AS2, AS2 AS1,
       and AS2 AS2.
 
-   Unary postfix operators ~* ~+ ~{m} ~{m,n} ~{m,}
+   Unary postfix operators ~* ~+ ~{m} ~{m,n} ~{m,}                              🚧 Explicitly skip
       These operators have similar functionality as the corresponding
       operators listed above, but all occurrences of the regular
       expression has to match the same pattern.  For example, [AS1
@@ -1142,7 +1142,7 @@ RFC 2622                          RPSL                         June 1999
    AS-path starts with AS1 and ends in AS2 with any number of AS numbers
    in between.
 
-   Composite Policy Filters The following operators (in decreasing order
+   Composite Policy Filters The following operators (in decreasing order        👌
    of evaluation) can be used to form composite policy filters:
 
 
@@ -1180,7 +1180,7 @@ Alaettinoglu, et al.        Standards Track                    [Page 21]
 RFC 2622                          RPSL                         June 1999
 
 
-   Routing Policy Attributes Policy filters can also use the values of
+   Routing Policy Attributes Policy filters can also use the values of          🤷 Parse but not check
    other attributes for comparison.  The attributes whose values can be
    used in policy filters are specified in the RPSL dictionary.  Please
    refer to Section 7 for details.  An example using the the BGP
@@ -1192,7 +1192,7 @@ RFC 2622                          RPSL                         June 1999
    Filters using the routing policy attributes defined in the dictionary
    are evaluated before evaluating the operators AND, OR and NOT.
 
-   Filter Set Name
+   Filter Set Name                                                              👌
       A filter set name matches the set of routes that are matched by
       its filter attribute.  Note that the filter attribute of a filter
       set, can recursively refer to other filter set names.  For example
