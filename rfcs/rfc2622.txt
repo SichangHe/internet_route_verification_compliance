@@ -761,8 +761,8 @@ RFC 2622                          RPSL                         June 1999
 
                         Figure 10:  as-set objects.
 
-   The mbrs-by-ref attribute is a list of maintainer names or the
-   keyword ANY.  If this attribute is used, the AS set also includes            TODO
+   The mbrs-by-ref attribute is a list of maintainer names or the               👌
+   keyword ANY.  If this attribute is used, the AS set also includes
    ASes whose aut-num objects are registered by one of these maintainers
    and whose member-of attribute refers to the name of this AS set.  If
    the value of a mbrs-by-ref attribute is ANY, any AS object referring
@@ -852,8 +852,8 @@ RFC 2622                          RPSL                         June 1999
    30.9.9.96/28, and all the more specifics of address prefixes in route
    set rs-foo.
 
-   The mbrs-by-ref attribute is a list of maintainer names or the
-   keyword ANY.  If this attribute is used, the route set also includes         TODO
+   The mbrs-by-ref attribute is a list of maintainer names or the               👌
+   keyword ANY.  If this attribute is used, the route set also includes
    address prefixes whose route objects are registered by one of these
    maintainers and whose member-of attribute refers to the name of this
    route set.  If the value of a mbrs-by-ref attribute is ANY, any route
