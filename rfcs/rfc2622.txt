@@ -620,7 +620,7 @@ Alaettinoglu, et al.        Standards Track                    [Page 11]
 RFC 2622                          RPSL                         June 1999
 
 
-4 route Class                                                                   🤷 Not recorded
+4 route Class                                                                   🤷 Used indirectly
 
    Each interAS route (also referred to as an interdomain route)
    originated by an AS is specified using a route object.  The
@@ -682,7 +682,7 @@ RFC 2622                          RPSL                         June 1999
    For this purpose we define as-set, route-set, rtr-set, filter-set,
    and peering-set classes.  These classes define a named set.  The
    members of these sets can be specified either directly by listing
-   them in the sets' definition, or indirectly by having member objects         TODO
+   them in the sets' definition, or indirectly by having member objects
    refer to the sets' names, or a combination of both methods.
 
    A set's name is an rpsl word with the following restrictions: All
@@ -700,7 +700,7 @@ RFC 2622                          RPSL                         June 1999
    following names are valid: AS1:AS-CUSTOMERS, AS1:RS-EXPORT:AS2, RS-
    EXCEPTIONS:RS-BOGUS.
 
-   The purpose of an hierarchical set name is to partition the set name         🤷
+   The purpose of an hierarchical set name is to partition the set name
    space so that the maintainers of the set X1 controls the whole set
    name space underneath, i.e. X1:...:Xn-1.  Thus, a set object with
    name X1:...:Xn-1:Xn can only be created by the maintainer of the
@@ -900,7 +900,7 @@ Alaettinoglu, et al.        Standards Track                    [Page 16]
 RFC 2622                          RPSL                         June 1999
 
 
-   Note that, if an address prefix is listed in a members attribute of a        🤷
+   Note that, if an address prefix is listed in a members attribute of a
    route set, it is a member of that route set.  The route object
    corresponding to this address prefix does not need to contain a
    member-of attribute referring to this set name.  The member-of
@@ -1028,7 +1028,7 @@ RFC 2622                          RPSL                         June 1999
       import: from AS2 accept AS2
       import: from AS3 accept AS3
 
-   A route set name can also be followed by one of the operators '^-',
+   A route set name can also be followed by one of the operators '^-',          TODO: allow
    '^+', example, { 5.0.0.0/8, 6.0.0.0/8 }^+ equals { 5.0.0.0/8^+,
    6.0.0.0/8^+ }, and AS1^- equals all the exclusive more specifics of
    routes originated by AS1.
@@ -1200,7 +1200,7 @@ RFC 2622                          RPSL                         June 1999
       fltr-bar matches AS1'S routes or { 5.0.0.0/8, 6.0.0.0/8 } if their
       as path contained AS2.
 
-5.5 rtr-set Class                                                               ❌ Not recorded and skip for filters
+5.5 rtr-set Class                                                               🤷 Invisible
 
    The attributes of the rtr-set class are shown in Figure 18.  The
    rtr-set attribute defines the name of the set.  It is an RPSL name
@@ -2059,7 +2059,7 @@ RFC 2622                          RPSL                         June 1999
    export policies with "from" replaced with "to" and "accept" is
    replaced with "announce".
 
-7 dictionary Class                                                              🤷
+7 dictionary Class                                                              🤷 Not used
 
    The dictionary class provides extensibility to RPSL. Dictionary
    objects define routing policy attributes, types, and routing
@@ -2088,7 +2088,7 @@ RFC 2622                          RPSL                         June 1999
    prepend above takes AS numbers as arguments.
 
    Once an rp-attribute is defined in the dictionary, it can be used to
-   describe policy filters and actions.  Policy analysis tools are              TODO: What? Are we?
+   describe policy filters and actions.  Policy analysis tools are
    required to fetch the dictionary object and recognize newly defined
    rp-attributes, types, and protocols.  The analysis tools may
    approximate policy analyses on rp-attributes that they do not
@@ -2499,9 +2499,9 @@ RFC 2622                          RPSL                         June 1999
 
            Figure 28:  Policy example using the community rp-attribute.
 
-8 Advanced route Class                                                          ❌ Not implemented
+8 Advanced route Class
 
-8.1 Specifying Aggregate Routes
+8.1 Specifying Aggregate Routes                                                 🤷 Deprecated
 
    The components, aggr-bndry, aggr-mtd, export-comps, inject, and holes
    attributes are used for specifying aggregate routes [11].  A route
@@ -2864,7 +2864,7 @@ RFC 2622                          RPSL                         June 1999
    In this case 128.8.0.0/15, 128.10.0.0/16, 128.11.0.0/16 are
    exportable.
 
-8.2 Specifying Static Routes
+8.2 Specifying Static Routes                                                    🤷 Don't care
 
    The inject attribute can be used to specify static routes by using
    "upon static" as the condition:
@@ -2888,7 +2888,7 @@ RFC 2622                          RPSL                         June 1999
    inject: at 7.7.7.1 action next-hop = 7.7.7.2; cost = 10; upon static
    inject: at 7.7.7.1 action next-hop = 7.7.7.3; cost = 20; upon static
 
-9 inet-rtr Class                                                                ❌ Not checked
+9 inet-rtr Class                                                                🤷 We don't know routers
 
 Routers are specified using the inet-rtr class.  The attributes of the
 inet-rtr class are shown in Figure 35.  The inet-rtr attribute is a valid
