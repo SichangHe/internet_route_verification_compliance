@@ -120,13 +120,13 @@ RFC 4012                         RPSLng                       March 2005
    attributes could be extended, this would present backward
    compatibility issues and could undermine clarity in the expressions.
 
-   Keeping this in mind, the "import:", "export:", and "default:"
+   Keeping this in mind, the "import:", "export:", and "default:"               👌
    attributes implicitly specify IPv4 unicast policy and will remain as
    previously defined in RPSL, and new multi-protocol (prefixed with the
    string "mp-") attributes will be introduced.  These new "mp-"
    attributes are described below.
 
-2.1.   Ambiguity Resolution
+2.1.   Ambiguity Resolution                                                     🤷
 
    The same peering can be covered by more than one multi-protocol
    policy attribute or by a combination of multi-protocol policy
@@ -147,7 +147,7 @@ RFC 4012                         RPSLng                       March 2005
    allow for more compact policy expressions with converged routing
    policy.
 
-   The possible values for <afi> are as follows:
+   The possible values for <afi> are as follows:                                👌
 
       ipv4.unicast
       ipv4.multicast
@@ -172,7 +172,7 @@ Blunk, et al.               Standards Track                     [Page 3]
 RFC 4012                         RPSLng                       March 2005
 
 
-2.3.  RPSL Dictionary Extensions
+2.3.  RPSL Dictionary Extensions                                                🤷
 
    In order to support IPv6 addresses specified with the next-hop rp-
    attribute, a new predefined dictionary type entitled "ipv6_address"
@@ -193,7 +193,7 @@ RFC 4012                         RPSLng                       March 2005
    referred to as BGP4+).  BGP4+ could not be used, as the '+' character
    is not allowed by the RPSL specification in protocol names.
 
-2.4.  IPv6 RPSL Types
+2.4.  IPv6 RPSL Types                                                           👌
 
    This document will reference three new IPv6 RPSL types, namely,
    <ipv6-address>, <ipv6-address-prefix>, and <ipv6-address-prefix-
@@ -215,7 +215,7 @@ RFC 4012                         RPSLng                       March 2005
    is present, the policy expression is presumed to apply to all
    protocol families, namely, ipv4.unicast, ipv4.multicast,
    ipv6.unicast, and ipv6.multicast.  This is the equivalent of the afi
-   specification "afi any".  The mp-import and mp-export attributes have
+   specification "afi any".  The mp-import and mp-export attributes have        👌
    both a basic policy specification and a more powerful structured
    policy specification.
 
@@ -228,7 +228,7 @@ Blunk, et al.               Standards Track                     [Page 4]
 RFC 4012                         RPSLng                       March 2005
 
 
-   The syntax for the mp-default attribute and the basic policy
+   The syntax for the mp-default attribute and the basic policy                 👌
    specification of the mp-import and mp-export attributes is as
    follows:
 
@@ -259,7 +259,7 @@ RFC 4012                         RPSLng                       March 2005
    non-structured policy expressions.  The mp-export structured policy
    syntax is expressed symmetrically to the mp-import attribute.  The
    structured syntax allows exceptions and refinements to policies by
-   use of the "except" and "refine" keywords.  Further, the exceptions
+   use of the "except" and "refine" keywords.  Further, the exceptions          TODO: check
    and refinements may specify an optional "afi" list to restrict the
    policy expression to particular address families.
 
@@ -297,7 +297,7 @@ RFC 4012                         RPSLng                       March 2005
    mp-import: [protocol <protocol-1>] [into <protocol-2>]
         <afi-import-expression>
 
-2.5.1.  <mp-peering>
+2.5.1.  <mp-peering>                                                            👌
 
    <mp-peering> indicates the AS (and the router if present) and is
    defined as follows:
@@ -314,7 +314,7 @@ RFC 4012                         RPSLng                       March 2005
    "AND NOT" combination).  That is, "(AS65001 OR AS65002) EXCEPT
    AS65002" equals "AS65001".
 
-2.5.2.  <mp-filter>
+2.5.2.  <mp-filter>                                                             👌
 
    The <mp-filter> policy filter expression is derived from the RPSL
    <filter> policy filter expression defined in section 5.4 of RFC 2622
