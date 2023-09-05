@@ -1028,8 +1028,8 @@ RFC 2622                          RPSL                         June 1999
       import: from AS2 accept AS2
       import: from AS3 accept AS3
 
-   A route set name can also be followed by one of the operators '^-',          TODO: allow
-   '^+', example, { 5.0.0.0/8, 6.0.0.0/8 }^+ equals { 5.0.0.0/8^+,
+   A route set name can also be followed by one of the operators '^-',          ✅ Also allow other operators
+   '^+', example, { 5.0.0.0/8, 6.0.0.0/8 }^+ equals { 5.0.0.0/8^+,              ❌ No lexer support for address prefix set: only 2 cases
    6.0.0.0/8^+ }, and AS1^- equals all the exclusive more specifics of
    routes originated by AS1.
 
