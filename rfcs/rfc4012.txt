@@ -342,7 +342,7 @@ RFC 4012                         RPSLng                       March 2005
 
 2.5.3.  Policy Examples
 
-   The address family may be specified in subsequent refine or except
+   The address family may be specified in subsequent refine or except           TODO: check
    policy expressions and is valid only within the policy expression
    that contains it.
 
@@ -374,7 +374,7 @@ RFC 4012                         RPSLng                       March 2005
    aut-num: AS65002
    mp-import: afi ipv6.unicast from AS65001 accept {192.0.2.0/24}
 
-3.  route6 Class
+3.  route6 Class                                                                👌
 
    The route6 class is the IPv6 equivalent of the route class.  As with
    the route class, the class key for the route6 class is specified by
@@ -427,7 +427,7 @@ mnt-routes    list of <mntner-name>             optional, multi-valued
 
 4.  Updates to Existing Classes to Support the Extensions
 
-4.1.  as-set Class
+4.1.  as-set Class                                                              👌
 
    The as-set class defines a set of Autonomous Systems (AS), specified
    either directly by listing them in the members attribute or
@@ -452,7 +452,7 @@ Blunk, et al.               Standards Track                     [Page 8]
 RFC 4012                         RPSLng                       March 2005
 
 
-4.2.  route-set Class
+4.2.  route-set Class                                                           👌
 
    This class is used to specify a set of route prefixes.
 
@@ -473,7 +473,7 @@ mp-members: rs-bar
 mp-members: 2001:0DB8::/32  # v6 member
 mp-members: 192.0.2.0/24   # v4 member
 
-4.3.  filter-set Class
+4.3.  filter-set Class                                                          👌
 
    The new "mp-filter:" attribute defines the set's policy filter.  A
    policy filter is a logical expression that when applied to a set of
@@ -487,11 +487,11 @@ mp-members: 192.0.2.0/24   # v4 member
 
    Where <mp-filter> is defined above in Section 2.5.2.  While the
    "filter:" and "mp-filter:" attributes are of type "optional", a
-   filter-set must contain one of these two attributes.  Implementations
+   filter-set must contain one of these two attributes.  Implementations        🤷
    should reject instances where both attributes are defined in an
    object, as the interpretation of such a filter-set is undefined.
 
-4.4.  peering-set Class
+4.4.  peering-set Class                                                         👌
 
    The peering set class is updated with a "mp-peering:" attribute.
 
@@ -515,9 +515,9 @@ RFC 4012                         RPSLng                       March 2005
 
    With <mp-peering> defined as above in Section 2.5.1.  While the
    "peering:" and "mp-peering:" attributes are of type "optional", a
-   peering-set must contain at least one of these two attributes.
+   peering-set must contain at least one of these two attributes.               🤷
 
-4.5.  inet-rtr Class
+4.5.  inet-rtr Class                                                            🤷
 
    Two new attributes are introduced to the inet-rtr class --
    "interface:", which allows the definition of generic interfaces,
@@ -575,7 +575,7 @@ RFC 4012                         RPSLng                       March 2005
    comma-separated list of peering options for <protocol>, as provided
    in the RPSL dictionary.
 
-4.6.  rtr-set Class
+4.6.  rtr-set Class                                                             🤷
 
    The rtr-set class is extended with a new attribute, "mp-members:".
    This attribute extends the original "members:" attribute by allowing
