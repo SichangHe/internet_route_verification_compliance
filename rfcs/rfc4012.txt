@@ -259,7 +259,7 @@ RFC 4012                         RPSLng                       March 2005
    non-structured policy expressions.  The mp-export structured policy
    syntax is expressed symmetrically to the mp-import attribute.  The
    structured syntax allows exceptions and refinements to policies by
-   use of the "except" and "refine" keywords.  Further, the exceptions          TODO: check
+   use of the "except" and "refine" keywords.  Further, the exceptions
    and refinements may specify an optional "afi" list to restrict the
    policy expression to particular address families.
 
@@ -587,7 +587,7 @@ RFC 4012                         RPSLng                       March 2005
                <ipv4-address> or
                <ipv6-address>)
 
-5.  RFC 2725 Extensions
+5.  RFC 2725 Extensions                                                         🤷
 
    RFC 2725 [2] introduces an authorization model to address the
    integrity of policy expressed in routing registries.  Two new
