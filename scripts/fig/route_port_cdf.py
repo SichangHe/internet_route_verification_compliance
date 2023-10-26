@@ -1,4 +1,4 @@
-"""Run at `scripts/` with `python3 -m fig.route_port_cdf.main`.
+"""Run at `scripts/` with `python3 -m fig.route_port_cdf`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/72>
 """

@@ -1,4 +1,4 @@
-"""Run at `scripts/` with `python3 -m fig.as_pair_cdf.main`.
+"""Run at `scripts/` with `python3 -m fig.as_pair_cdf`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/68>
 """
