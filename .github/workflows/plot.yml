@@ -1,0 +1,25 @@
+name: Generate plots
+
+on:
+  push:
+    tags:
+      - plot*
+
+jobs:
+  plot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+      - run: |
+          python -m pip install --upgrade pip
+          pip install matplotlib pandas requests
+          cd scripts/
+          python -m fig.main
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          automatic_release_tag: latest
+          files: scripts/*.pdf

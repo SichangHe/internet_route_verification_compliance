@@ -37,6 +37,7 @@ def plot():
             d.index,
             [d[f"%{tag}"] for tag in TAGS],
             labels=[f"%{tag}" for tag in TAGS],
+            rasterized=True,
         )
         ax.set_xlabel("Route", fontsize=16)
         ax.set_ylabel(f"Percentage of {port}", fontsize=16)
