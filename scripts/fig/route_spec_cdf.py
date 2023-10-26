@@ -33,21 +33,6 @@ def plot():
     fig, ax = plt.subplots(figsize=(16, 9))
     fig.tight_layout()
     for meh in MEHS:
-        ax.ecdf(df[meh], label=f"CDF of {meh}")
-    ax.set_xlabel("Number of Special Cases by Controlling Routes", fontsize=16)
-    ax.set_ylabel("Cumulative Fraction of Routes", fontsize=16)
-    ax.tick_params(axis="both", labelsize=14)
-    ax.grid()
-    ax.legend(loc="best", fontsize=14)
-
-    # For checking.
-    # fig.show()
-
-    fig: Figure
-    ax: Axes
-    fig, ax = plt.subplots(figsize=(16, 9))
-    fig.tight_layout()
-    for meh in MEHS:
         ax.ecdf(meh_percentages[f"%{meh}"], label=f"CDF of %{meh}")
     ax.set_xlabel("Percentage of Special Cases by Controlling Routes", fontsize=16)
     ax.set_ylabel("Cumulative Fraction of Routes", fontsize=16)

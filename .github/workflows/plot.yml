@@ -9,6 +9,9 @@ jobs:
   plot:
     runs-on: ubuntu-latest
     steps:
+      - uses: actionhippie/swap-space@v1
+        with:
+          swap: 30G
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
