@@ -13,3 +13,7 @@ def main():
     as_stacked_area.main()
     route_port_stacked_area.main()
     route_spec_cdf.main()
+
+
+if __name__ == "__main__":
+    main()
