@@ -1,6 +1,6 @@
 """Run at `scripts/` with `python3 -m fig.route_port_stacked_area`.
 Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/72>
+<https://github.com/SichangHe/internet_route_verification/issues/88>
 """
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -8,7 +8,7 @@ from fig import download_if_missing
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
-FILE = "route_stats.csv.gz"
+FILE = "route_stats1.csv.gz"
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
@@ -53,7 +53,7 @@ def plot():
 
 def main():
     download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/releases/download/data-72/route_stats.csv.gz",
+        "https://github.com/SichangHe/internet_route_verification/releases/download/data-88/route_stats1.csv.gz",
         FILE,
     )
     figs, _, _ = plot()
