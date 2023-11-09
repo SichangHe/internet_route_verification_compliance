@@ -1,6 +1,6 @@
 """Run at `scripts/` with `python3 -m fig.as_stacked_area`.
 Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/68>
+<https://github.com/SichangHe/internet_route_verification/issues/89>
 """
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -8,7 +8,7 @@ from fig import download_if_missing
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
-FILE = "as_stats.csv"
+FILE = "as_stats1.csv"
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
@@ -53,7 +53,7 @@ def plot():
 
 def main():
     download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/12923143/as_stats.csv",
+        "https://github.com/SichangHe/internet_route_verification/files/13307781/as_stats1.csv",
         FILE,
     )
     figs, _, _ = plot()

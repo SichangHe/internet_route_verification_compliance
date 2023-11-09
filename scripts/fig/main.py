@@ -1,6 +1,12 @@
 import gc
 
-from fig import as_pair_cdf, as_rules_cdf, as_stacked_area, route_port_stacked_area
+from fig import (
+    as_pair_cdf,
+    as_rules_cdf,
+    as_spec_stacked_area,
+    as_stacked_area,
+    route_port_stacked_area,
+)
 
 
 def main():
@@ -8,8 +14,8 @@ def main():
         as_pair_cdf,
         as_rules_cdf,
         as_stacked_area,
+        as_spec_stacked_area,
         route_port_stacked_area,
-        # route_spec_cdf,
     ]
     for mod in mods:
         print(f"Running {mod.__name__}.")
