@@ -58,7 +58,7 @@ def plot():
 
 def main():
     download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/13302346/as_stats1.csv",
+        "https://github.com/SichangHe/internet_route_verification/files/13307781/as_stats1.csv",
         FILE,
     )
     fig, _, _ = plot()
