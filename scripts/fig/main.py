@@ -6,6 +6,7 @@ from fig import (
     as_spec_stacked_area,
     as_stacked_area,
     route_port_stacked_area,
+    route_spec_stacked_area,
 )
 
 
@@ -16,6 +17,7 @@ def main():
         as_stacked_area,
         as_spec_stacked_area,
         route_port_stacked_area,
+        route_spec_stacked_area,
     ]
     for mod in mods:
         print(f"Running {mod.__name__}.")
