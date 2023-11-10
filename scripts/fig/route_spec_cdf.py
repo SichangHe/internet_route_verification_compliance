@@ -21,7 +21,7 @@ MEHS = (
 
 
 def plot():
-    df = pd.read_csv(FILE, dtype="int16")
+    df = pd.read_csv(FILE, dtype="uint16")
     meh_sums = sum(df[meh] for meh in MEHS)
     meh_percentages = pd.DataFrame(
         {f"%{meh}": df[meh] / meh_sums * 100.0 for meh in MEHS}

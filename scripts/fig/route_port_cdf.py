@@ -60,7 +60,7 @@ def main():
         "https://github.com/SichangHe/internet_route_verification/releases/download/data-72/route_stats.csv.gz",
         FILE,
     )
-    df = pd.read_csv(FILE, dtype="int16")
+    df = pd.read_csv(FILE, dtype="uint16")
     fig, _ = plot_ports(df)
 
     pdf_name = f"route-cdf.pdf"

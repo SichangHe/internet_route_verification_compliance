@@ -14,7 +14,7 @@ TAGS = ("ok", "skip", "unrec", "meh", "err")
 
 
 def plot():
-    df = pd.read_csv(FILE, dtype="int16")
+    df = pd.read_csv(FILE, dtype="uint16")
 
     dfs: dict[str, pd.DataFrame] = {}
     figs: dict[str, Figure] = {}
