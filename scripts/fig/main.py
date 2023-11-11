@@ -2,6 +2,7 @@ import gc
 
 from fig import (
     as_pair_stacked_area,
+    as_pair_unrec_stacked_area,
     as_rules_cdf,
     as_spec_stacked_area,
     as_stacked_area,
@@ -15,6 +16,7 @@ from fig import (
 def main():
     mods = [
         as_pair_stacked_area,
+        as_pair_unrec_stacked_area,
         as_rules_cdf,
         as_stacked_area,
         as_unrec_stacked_area,
