@@ -1,6 +1,7 @@
 import gc
 
 from fig import (
+    as_pair_spec_stacked_area,
     as_pair_stacked_area,
     as_pair_unrec_stacked_area,
     as_rules_cdf,
@@ -15,15 +16,16 @@ from fig import (
 
 def main():
     mods = [
+        as_pair_spec_stacked_area,
         as_pair_stacked_area,
         as_pair_unrec_stacked_area,
         as_rules_cdf,
+        as_spec_stacked_area,
         as_stacked_area,
         as_unrec_stacked_area,
-        as_spec_stacked_area,
         route_port_stacked_area,
-        route_unrec_stacked_area,
         route_spec_stacked_area,
+        route_unrec_stacked_area,
     ]
     for mod in mods:
         print(f"Running {mod.__name__}.")
