@@ -1,6 +1,6 @@
 """Run at `scripts/` with `python3 -m fig.as_pair_stacked_area`.
 Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/68>
+<https://github.com/SichangHe/internet_route_verification/issues/94>
 """
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -8,7 +8,7 @@ from fig import download_if_missing
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
-FILE = "as_pair_stats.csv"
+FILE = "as_pair_stats1.csv.gz"
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
@@ -53,7 +53,7 @@ def plot():
 
 def main():
     download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/12923141/as_pair_stats.csv",
+        "https://github.com/SichangHe/internet_route_verification/files/13319676/as_pair_stats1.csv.gz",
         FILE,
     )
     figs, _, _ = plot()
