@@ -24,14 +24,29 @@ def plot():
         for tag in TAGS:
             d[f"%{tag}"] = df[f"{port}_{tag}"] / d["total"] * 100.0
         d.dropna(inplace=True)
-        d = d.sort_values(
+        d.sort_values(
             by=[f"%{tag}" for tag in ("ok", "err", "skip", "unrec", "meh")],
             ascending=[False, True, False, False, False],
             ignore_index=True,
+            inplace=True,
         )
         dfs[port] = d
-        figs[port], axs[port] = plt.subplots(figsize=(16, 9))
-        fig, ax = figs[port], axs[port]
+    d = pd.DataFrame(
+        {"total": sum(df[f"{port}_{tag}"] for tag in TAGS for port in PORTS)}
+    )
+    for tag in TAGS:
+        d[f"%{tag}"] = sum(df[f"{port}_{tag}"] for port in PORTS) / d["total"] * 100.0
+    d.dropna(inplace=True)
+    d.sort_values(
+        by=[f"%{tag}" for tag in ("ok", "err", "skip", "unrec", "meh")],
+        ascending=[False, True, False, False, False],
+        ignore_index=True,
+        inplace=True,
+    )
+    dfs["exchange"] = d
+    for key, d in dfs.items():
+        fig, ax = plt.subplots(figsize=(16, 9))
+        figs[key], axs[key] = fig, ax
         fig.tight_layout()
         ax.stackplot(
             d.index,
@@ -40,7 +55,7 @@ def plot():
             rasterized=True,
         )
         ax.set_xlabel("Route", fontsize=16)
-        ax.set_ylabel(f"Percentage of {port}", fontsize=16)
+        ax.set_ylabel(f"Percentage of {key}", fontsize=16)
         ax.tick_params(axis="both", labelsize=14)
         ax.grid()
         ax.legend(loc="lower left", fontsize=14)
@@ -58,9 +73,8 @@ def main():
     )
     figs, _, _ = plot()
 
-    for port in PORTS:
-        fig = figs[port]
-        pdf_name = f"route-{port}-percentages-stacked-area.pdf"
+    for key, fig in figs.items():
+        pdf_name = f"route-{key}-percentages-stacked-area.pdf"
         fig.savefig(pdf_name, bbox_inches="tight")
         fig.set_size_inches(8, 6)
         fig.savefig(pdf_name.replace(".pdf", "-squared.pdf"), bbox_inches="tight")
