@@ -24,10 +24,16 @@ def main():
 
     neighbors = list(NEIGHBORS) + ["neighbors"]
     rules = list(RULES) + ["rules"]
+    print("Pearson, Kendall Tau, and Spearman rank correlation.")
     for neighbor in neighbors:
         for rule in rules:
-            corr = df[neighbor].corr(df[rule])
-            print(f"{corr:.3f}: correlation between {neighbor} and {rule}.")
+            corrs = ", ".join(
+                [
+                    f"{df[neighbor].corr(df[rule], method=method):.3f}"
+                    for method in ("pearson", "kendall", "spearman")
+                ]
+            )
+            print(f"{corrs}: between {neighbor} and {rule}.")
 
 
 if __name__ == "__main__":
