@@ -21,6 +21,7 @@ def main():
 
     df["total"] = sum((df[f"{port}_{tag}"] for tag in TAGS for port in PORTS))
     df_all = {}
+    df_some = {}
     for tag in TAGS:
         df_all[tag] = df[
             df[f"import_{tag}"] + df[f"export_{tag}"] == df["total"]
@@ -28,6 +29,14 @@ def main():
         count = df_all[tag].__len__()
         percentage = count / n_route * 100
         print(f"{count} all {tag}, {percentage:.2f}%.")
+
+    print()
+    for tag in TAGS:
+        df_some[tag] = df[df[f"import_{tag}"] + df[f"export_{tag}"] > 0].dropna()
+        count = df_some[tag].__len__()
+        percentage = count / n_route * 100
+        print(f"{count} have {tag}, {percentage:.2f}%.")
+
     for port in PORTS:
         print()
         df[f"total_{port}"] = sum((df[f"{port}_{tag}"] for tag in TAGS))
@@ -47,6 +56,15 @@ def main():
             percentage = count / n_e * 100
             print(
                 f"{count} all {tag} in {port}, {percentage:.2f}% among routes with {port}."
+            )
+
+        print()
+        for tag in TAGS:
+            df_some[f"{port}_{tag}"] = df[df[f"{port}_{tag}"] > 0].dropna()
+            count = df_some[f"{port}_{tag}"].__len__()
+            percentage = count / n_e * 100
+            print(
+                f"{count} have {tag} in {port}, {percentage:.2f}% among routes with {port}."
             )
 
 
