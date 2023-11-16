@@ -1,27 +1,27 @@
-"""Run at `scripts/` with `python3 -m fig.as_pair_unrec_stacked_area`.
+"""Run at `scripts/` with `python3 -m scripts.fig.as_pair_spec_stacked_area`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/94>
 
-Adopted from `as_unrec_stacked_area.py`.
+Adopted from `as_spec_stacked_area.py`.
 """
 import matplotlib.pyplot as plt
 import pandas as pd
-from fig import download_if_missing
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
+from scripts import download_if_missing
+
 FILE = "as_pair_stats1.csv.gz"
 TAGS = (
-    "unrec_import_empty",
-    "unrec_export_empty",
-    "unrec_aut_num",
-    "unrec_as_set_route",
-    "unrec_some_as_set_route",
-    "unrec_as_set",
-    "unrec_as_routes",
-    "unrec_route_set",
-    "unrec_peering_set",
-    "unrec_filter_set",
+    "spec_export_customers",
+    "spec_as_is_origin_but_no_route",
+    "spec_as_set_contains_origin_but_no_route",
+    "spec_import_from_neighbor",
+    "spec_uphill",
+    "spec_uphill_tier1",
+    "spec_tier1_pair",
+    "spec_import_peer_oifps",
+    "spec_import_customer_oifps",
 )
 
 
@@ -49,10 +49,10 @@ def plot():
         labels=[f"%{tag}" for tag in TAGS],
     )
     ax.set_xlabel("AS Pair", fontsize=16)
-    ax.set_ylabel(f"Percentage of Unrecorded Case", fontsize=16)
+    ax.set_ylabel(f"Percentage of Special Case", fontsize=16)
     ax.tick_params(axis="both", labelsize=14)
     ax.grid()
-    ax.legend(loc="lower left", fontsize=14)
+    ax.legend(loc="lower center", fontsize=14)
 
     # For checking.
     # fig.show()
@@ -67,7 +67,7 @@ def main():
     )
     fig, _, _ = plot()
 
-    pdf_name = f"AS-pair-unrec-case-percentages-stacked-area.pdf"
+    pdf_name = f"AS-pair-special-case-percentages-stacked-area.pdf"
     fig.savefig(pdf_name, bbox_inches="tight")
     fig.set_size_inches(8, 6)
     fig.savefig(pdf_name.replace(".pdf", "-squared.pdf"), bbox_inches="tight")

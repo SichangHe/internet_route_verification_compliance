@@ -1,9 +1,10 @@
-"""Run at `scripts/` with `python3 -m fig.as_rules_corr`.
+"""Run at `scripts/` with `python3 -m scripts.stats.as_rules_corr`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/95>
 """
 import pandas as pd
-from fig import download_if_missing
+
+from scripts import download_if_missing
 
 NEIGHBORS = ("provider", "peer", "customer")
 RULES = ("import", "export")

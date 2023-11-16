@@ -1,12 +1,13 @@
-"""Run at `scripts/` with `python3 -m fig.as_rules_cdf`.
+"""Run at `scripts/` with `python3 -m scripts.fig.as_rules_cdf`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/60#issuecomment-1751551274>
 """
 import matplotlib.pyplot as plt
 import pandas as pd
-from fig import download_if_missing
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+
+from scripts import download_if_missing
 
 
 def plot():

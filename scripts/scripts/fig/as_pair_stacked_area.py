@@ -1,14 +1,15 @@
-"""Run at `scripts/` with `python3 -m fig.as_stacked_area`.
+"""Run at `scripts/` with `python3 -m scripts.fig.as_pair_stacked_area`.
 Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/89>
+<https://github.com/SichangHe/internet_route_verification/issues/94>
 """
 import matplotlib.pyplot as plt
 import pandas as pd
-from fig import download_if_missing
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
-FILE = "as_stats1.csv"
+from scripts import download_if_missing
+
+FILE = "as_pair_stats1.csv.gz"
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
@@ -20,7 +21,7 @@ def plot():
     figs: dict[str, Figure] = {}
     axs: dict[str, Axes] = {}
     for port in PORTS:
-        d = df[["aut_num"]].copy()
+        d = df[["from", "to"]].copy()
         d["total"] = sum(df[f"{port}_{tag}"] for tag in TAGS)
         for tag in TAGS:
             d[f"%{tag}"] = df[f"{port}_{tag}"] / d["total"] * 100.0
@@ -32,7 +33,7 @@ def plot():
             inplace=True,
         )
         dfs[port] = d
-    d = df[["aut_num"]].copy()
+    d = df[["from", "to"]].copy()
     d["total"] = sum(df[f"{port}_{tag}"] for tag in TAGS for port in PORTS)
     for tag in TAGS:
         d[f"%{tag}"] = sum(df[f"{port}_{tag}"] for port in PORTS) / d["total"] * 100.0
@@ -53,7 +54,7 @@ def plot():
             [d[f"%{tag}"] for tag in TAGS],
             labels=[f"%{tag}" for tag in TAGS],
         )
-        ax.set_xlabel("AS", fontsize=16)
+        ax.set_xlabel("AS Pair", fontsize=16)
         ax.set_ylabel(f"Percentage of {key}", fontsize=16)
         ax.tick_params(axis="both", labelsize=14)
         ax.grid()
@@ -67,13 +68,13 @@ def plot():
 
 def main():
     download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/13307781/as_stats1.csv",
+        "https://github.com/SichangHe/internet_route_verification/files/13319676/as_pair_stats1.csv.gz",
         FILE,
     )
     figs, _, _ = plot()
 
     for key, fig in figs.items():
-        pdf_name = f"AS-{key}-percentages-stacked-area.pdf"
+        pdf_name = f"AS-pair-{key}-percentages-stacked-area.pdf"
         fig.savefig(pdf_name, bbox_inches="tight")
         fig.set_size_inches(8, 6)
         fig.savefig(pdf_name.replace(".pdf", "-squared.pdf"), bbox_inches="tight")

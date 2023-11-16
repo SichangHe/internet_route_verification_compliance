@@ -1,12 +1,13 @@
-"""Run at `scripts/` with `python3 -m fig.route_port_cdf`.
+"""Run at `scripts/` with `python3 -m scripts.fig.route_port_cdf`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/72>
 """
 import matplotlib.pyplot as plt
 import pandas as pd
-from fig import download_if_missing
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+
+from scripts import download_if_missing
 
 FILE = "route_stats.csv.gz"
 PORTS = ("import", "export")

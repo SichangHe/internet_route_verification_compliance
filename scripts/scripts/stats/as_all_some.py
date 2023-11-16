@@ -1,11 +1,12 @@
-"""Run at `scripts/` with `python3 -m fig.as_all`.
+"""Run at `scripts/` with `python3 -m scripts.stats.as_all_some`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/89>
 
-Adopted from `route_all`.
+Adopted from `route_all_some`.
 """
 import pandas as pd
-from fig import download_if_missing
+
+from scripts import download_if_missing
 
 FILE = "as_stats1.csv"
 PORTS = ("import", "export")
