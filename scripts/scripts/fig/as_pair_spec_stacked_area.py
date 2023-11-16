@@ -8,10 +8,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+from scripts.csv_files import as_pair_stats
 
-from scripts import download_if_missing
-
-FILE = "as_pair_stats1.csv.gz"
+FILE = as_pair_stats
 TAGS = (
     "spec_export_customers",
     "spec_as_is_origin_but_no_route",
@@ -26,7 +25,7 @@ TAGS = (
 
 
 def plot():
-    df = pd.read_csv(FILE)
+    df = pd.read_csv(FILE.path)
 
     d = pd.DataFrame({"total": sum(df[tag] for tag in TAGS)})
     for tag in TAGS:
@@ -61,10 +60,7 @@ def plot():
 
 
 def main():
-    download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/13319676/as_pair_stats1.csv.gz",
-        FILE,
-    )
+    FILE.download_if_missing()
     fig, _, _ = plot()
 
     pdf_name = f"AS-pair-special-case-percentages-stacked-area.pdf"

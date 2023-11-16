@@ -1,6 +1,6 @@
 import gc
 
-from fig import (
+from scripts.fig import (
     as_pair_spec_stacked_area,
     as_pair_stacked_area,
     as_pair_unrec_stacked_area,

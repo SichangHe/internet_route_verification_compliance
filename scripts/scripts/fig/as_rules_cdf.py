@@ -6,12 +6,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+from scripts.csv_files import as_neighbors_vs_rules
 
-from scripts import download_if_missing
+FILE = as_neighbors_vs_rules
 
 
 def plot():
-    df_raw = pd.read_csv("as_neighbors_vs_rules.csv")
+    df_raw = pd.read_csv(FILE.path)
     # Remove ASes not in IRR.
     df = df_raw.drop(df_raw[df_raw["import"] == -1].index)
     df["rules"] = df["import"] + df["export"]
@@ -36,10 +37,7 @@ def plot():
 
 
 def main():
-    download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/12908403/as_neighbors_vs_rules.csv",
-        "as_neighbors_vs_rules.csv",
-    )
+    FILE.download_if_missing()
     fig, _ = plot()
 
     pdf_name = "CDF-AS-rules.pdf"

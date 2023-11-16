@@ -7,10 +7,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+from scripts.csv_files import route_stats
 
-from scripts import download_if_missing
-
-FILE = "route_stats1.csv.gz"
+FILE = route_stats
 TAGS = (
     "unrec_import_empty",
     "unrec_export_empty",
@@ -26,7 +25,7 @@ TAGS = (
 
 
 def plot():
-    df = pd.read_csv(FILE, dtype="uint16")
+    df = pd.read_csv(FILE.path, dtype="uint16")
 
     d = pd.DataFrame({"total": sum(df[tag].astype("uint32") for tag in TAGS)})
     for tag in TAGS:
@@ -62,10 +61,7 @@ def plot():
 
 
 def main():
-    download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/13307781/as_stats1.csv",
-        FILE,
-    )
+    FILE.download_if_missing()
     fig, _, _ = plot()
 
     pdf_name = f"route-unrec-case-percentages-stacked-area.pdf"

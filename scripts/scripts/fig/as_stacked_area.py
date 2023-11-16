@@ -6,16 +6,15 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+from scripts.csv_files import as_stats
 
-from scripts import download_if_missing
-
-FILE = "as_stats1.csv"
+FILE = as_stats
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
 
 def plot():
-    df = pd.read_csv(FILE)
+    df = pd.read_csv(FILE.path)
 
     dfs: dict[str, pd.DataFrame] = {}
     figs: dict[str, Figure] = {}
@@ -67,10 +66,7 @@ def plot():
 
 
 def main():
-    download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/13307781/as_stats1.csv",
-        FILE,
-    )
+    FILE.download_if_missing()
     figs, _, _ = plot()
 
     for key, fig in figs.items():

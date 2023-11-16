@@ -5,20 +5,16 @@ Data are from here:
 Adopted from `route_all_some`.
 """
 import pandas as pd
+from scripts.csv_files import as_stats
 
-from scripts import download_if_missing
-
-FILE = "as_stats1.csv"
+FILE = as_stats
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
 
 def main():
-    download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/13307781/as_stats1.csv",
-        FILE,
-    )
-    df = pd.read_csv(FILE)
+    FILE.download_if_missing()
+    df = pd.read_csv(FILE.path)
     n_as = len(df)
     print(f"{n_as} ASes in total.")
 

@@ -3,19 +3,16 @@ Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/95>
 """
 import pandas as pd
+from scripts.csv_files import as_neighbors_vs_rules
 
-from scripts import download_if_missing
-
+FILE = as_neighbors_vs_rules
 NEIGHBORS = ("provider", "peer", "customer")
 RULES = ("import", "export")
 
 
 def main():
-    download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/13346943/as_neighbors_vs_rules2.csv",
-        "as_neighbors_vs_rules2.csv",
-    )
-    df_raw = pd.read_csv("as_neighbors_vs_rules2.csv")
+    FILE.download_if_missing()
+    df_raw = pd.read_csv(FILE.path)
     # Remove ASes not in IRR or not in AS Relationship DB.
     df = df_raw.drop(
         df_raw[(df_raw["import"] == -1) | (df_raw["provider"] == -1)].index

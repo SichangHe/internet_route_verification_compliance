@@ -5,20 +5,16 @@ Data are from here:
 Adopted from `as_all_some`.
 """
 import pandas as pd
+from scripts.csv_files import as_pair_stats
 
-from scripts import download_if_missing
-
-FILE = "as_pair_stats1.csv.gz"
+FILE = as_pair_stats
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
 
 def main():
-    download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/files/13319676/as_pair_stats1.csv.gz",
-        FILE,
-    )
-    df = pd.read_csv(FILE)
+    FILE.download_if_missing()
+    df = pd.read_csv(FILE.path)
     n_asp = len(df)
     print(f"{n_asp} AS pairs in total.")
 

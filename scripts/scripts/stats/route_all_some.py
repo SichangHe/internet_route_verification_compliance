@@ -3,20 +3,16 @@ Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/88>
 """
 import pandas as pd
+from scripts.csv_files import route_stats
 
-from scripts import download_if_missing
-
-FILE = "route_stats1.csv.gz"
+FILE = route_stats
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
 
 def main():
-    download_if_missing(
-        "https://github.com/SichangHe/internet_route_verification/releases/download/data-88/route_stats1.csv.gz",
-        FILE,
-    )
-    df = pd.read_csv(FILE, dtype="uint16")
+    FILE.download_if_missing()
+    df = pd.read_csv(FILE.path, dtype="uint16")
     n_route = len(df)
     print(f"{n_route} routes in total.")
 
