@@ -5,8 +5,8 @@ as_neighbors_vs_rules = CsvFile(
     "https://github.com/SichangHe/internet_route_verification/files/12908403/as_neighbors_vs_rules.csv",
 )
 as_pair_stats = CsvFile(
-    "as_pair_stats1.csv.gz",
-    "https://github.com/SichangHe/internet_route_verification/files/13319676/as_pair_stats1.csv.gz",
+    "as_pair_stats2.csv.gz",
+    "https://github.com/SichangHe/internet_route_verification/files/13391593/as_pair_stats2.csv.gz",
 )
 as_stats = CsvFile(
     "as_stats2.csv",
