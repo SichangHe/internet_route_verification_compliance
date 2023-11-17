@@ -46,7 +46,9 @@ def plot():
     )
     dfs["exchange"] = d
     for key, d in dfs.items():
-        indexes, values = smart_sample(tuple(d[f"%{tag}"] for tag in TAGS))
+        indexes, values = smart_sample(
+            tuple(d[f"%{tag}"] for tag in TAGS), min_gap_frac=0.0003
+        )
 
         fig, ax = plt.subplots(figsize=(16, 9))
         figs[key], axs[key] = fig, ax

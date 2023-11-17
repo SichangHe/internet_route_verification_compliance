@@ -39,7 +39,9 @@ def plot():
         ignore_index=True,
         inplace=True,
     )
-    indexes, values = smart_sample(tuple(d[f"%{tag}"] for tag in TAGS))
+    indexes, values = smart_sample(
+        tuple(d[f"%{tag}"] for tag in TAGS), min_gap_frac=0.0002
+    )
 
     fig: Figure
     ax: Axes
