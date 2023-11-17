@@ -10,13 +10,16 @@ plt.rcParams["ps.fonttype"] = 42
 def smart_sample(same: tuple[pd.Series]):
     """Only sample the indexes of boundary values.
     All same (plural of "series") should have the same length."""
+    size = len(same[0])
+    max_index = size - 1
+
     indexes: list[int] = []
     values = tuple([] for _ in same)
     old_value = None
     retaining = False
-    for index in range(len(same[0])):
+    for index in range(size):
         value = tuple(series[index] for series in same)
-        if value == old_value:
+        if value == old_value and index != max_index:
             retaining = True
             continue
         if retaining:

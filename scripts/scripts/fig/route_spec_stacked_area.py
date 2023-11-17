@@ -9,6 +9,7 @@ import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from scripts.csv_files import route_stats
+from scripts.fig import smart_sample
 
 FILE = route_stats
 TAGS = (
@@ -36,16 +37,16 @@ def plot():
         ascending=False,
         ignore_index=True,
     )
+    indexes, values = smart_sample(tuple(d[f"%{tag}"] for tag in TAGS))
 
     fig: Figure
     ax: Axes
     fig, ax = plt.subplots(figsize=(16, 9))
     fig.tight_layout()
     ax.stackplot(
-        d.index,
-        [d[f"%{tag}"] for tag in TAGS],
+        indexes,
+        values,
         labels=[f"%{tag}" for tag in TAGS],
-        rasterized=True,
     )
     ax.set_xlabel("Route", fontsize=16)
     ax.set_ylabel(f"Percentage of Special Case", fontsize=16)

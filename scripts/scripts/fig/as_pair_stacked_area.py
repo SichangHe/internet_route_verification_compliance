@@ -7,6 +7,7 @@ import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from scripts.csv_files import as_pair_stats
+from scripts.fig import smart_sample
 
 FILE = as_pair_stats
 PORTS = ("import", "export")
@@ -45,12 +46,14 @@ def plot():
     )
     dfs["exchange"] = d
     for key, d in dfs.items():
+        indexes, values = smart_sample(tuple(d[f"%{tag}"] for tag in TAGS))
+
         fig, ax = plt.subplots(figsize=(16, 9))
         figs[key], axs[key] = fig, ax
         fig.tight_layout()
         ax.stackplot(
-            d.index,
-            [d[f"%{tag}"] for tag in TAGS],
+            indexes,
+            values,
             labels=[f"%{tag}" for tag in TAGS],
         )
         ax.set_xlabel("AS Pair", fontsize=16)

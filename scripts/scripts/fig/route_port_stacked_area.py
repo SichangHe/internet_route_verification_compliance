@@ -1,12 +1,15 @@
 """Run at `scripts/` with `python3 -m scripts.fig.route_port_stacked_area`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/88>
+
+Note that this takes > 6min.
 """
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from scripts.csv_files import route_stats
+from scripts.fig import smart_sample
 
 FILE = route_stats
 PORTS = ("import", "export")
@@ -45,14 +48,15 @@ def plot():
     )
     dfs["exchange"] = d
     for key, d in dfs.items():
+        indexes, values = smart_sample(tuple(d[f"%{tag}"] for tag in TAGS))
+
         fig, ax = plt.subplots(figsize=(16, 9))
         figs[key], axs[key] = fig, ax
         fig.tight_layout()
         ax.stackplot(
-            d.index,
-            [d[f"%{tag}"] for tag in TAGS],
+            indexes,
+            values,
             labels=[f"%{tag}" for tag in TAGS],
-            rasterized=True,
         )
         ax.set_xlabel("Route", fontsize=16)
         ax.set_ylabel(f"Percentage of {key}", fontsize=16)
