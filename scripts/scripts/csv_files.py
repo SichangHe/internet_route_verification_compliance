@@ -9,8 +9,8 @@ as_pair_stats = CsvFile(
     "https://github.com/SichangHe/internet_route_verification/files/13319676/as_pair_stats1.csv.gz",
 )
 as_stats = CsvFile(
-    "as_stats1.csv",
-    "https://github.com/SichangHe/internet_route_verification/files/13307781/as_stats1.csv",
+    "as_stats2.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13389792/as_stats2.csv",
 )
 route_stats = CsvFile(
     "route_stats1.csv.gz",
