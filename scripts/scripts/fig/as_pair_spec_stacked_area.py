@@ -38,13 +38,33 @@ def plot():
         inplace=True,
     )
 
+    indexes = []
+    values = tuple([] for _ in TAGS)
+    old_value = None
+    retaining = False
+    for index in d.index:
+        value = tuple(d[f"%{tag}"][index] for tag in TAGS)
+        if value == old_value:
+            retaining = True
+            continue
+        if retaining:
+            indexes.append(index - 1)
+            assert old_value is not None
+            for vs, v in zip(values, old_value):
+                vs.append(v)
+            retaining = False
+        old_value = value
+        indexes.append(index)
+        for vs, v in zip(values, value):
+            vs.append(v)
+
     fig: Figure
     ax: Axes
     fig, ax = plt.subplots(figsize=(16, 9))
     fig.tight_layout()
     ax.stackplot(
-        d.index,
-        [d[f"%{tag}"] for tag in TAGS],
+        indexes,
+        values,
         labels=[f"%{tag}" for tag in TAGS],
     )
     ax.set_xlabel("AS Pair", fontsize=16)
