@@ -9,6 +9,7 @@ import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from scripts.csv_files import as_pair_stats
+from scripts.fig import smart_sample
 
 FILE = as_pair_stats
 TAGS = (
@@ -38,25 +39,7 @@ def plot():
         inplace=True,
     )
 
-    indexes = []
-    values = tuple([] for _ in TAGS)
-    old_value = None
-    retaining = False
-    for index in d.index:
-        value = tuple(d[f"%{tag}"][index] for tag in TAGS)
-        if value == old_value:
-            retaining = True
-            continue
-        if retaining:
-            indexes.append(index - 1)
-            assert old_value is not None
-            for vs, v in zip(values, old_value):
-                vs.append(v)
-            retaining = False
-        old_value = value
-        indexes.append(index)
-        for vs, v in zip(values, value):
-            vs.append(v)
+    indexes, values = smart_sample(tuple(d[f"%{tag}"] for tag in TAGS))
 
     fig: Figure
     ax: Axes
