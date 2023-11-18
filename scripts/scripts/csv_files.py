@@ -13,6 +13,6 @@ as_stats = CsvFile(
     "https://github.com/SichangHe/internet_route_verification/files/13389792/as_stats2.csv",
 )
 route_stats = CsvFile(
-    "route_stats1.csv.gz",
-    "https://github.com/SichangHe/internet_route_verification/releases/download/data-88/route_stats1.csv.gz",
+    "route_stats2.csv.gz",
+    "https://github.com/SichangHe/internet_route_verification/releases/download/data-101/route_stats2.csv.gz",
 )

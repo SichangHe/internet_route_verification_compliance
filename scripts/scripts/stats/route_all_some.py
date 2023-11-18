@@ -1,4 +1,4 @@
-"""Run at `scripts/` with `python3 -m fig.route_all_some`.
+"""Run at `scripts/` with `python3 -m scripts.stats.route_all_some`.
 Data are from here:
 <https://github.com/SichangHe/internet_route_verification/issues/88>
 """
