@@ -1,6 +1,4 @@
 """Run at `scripts/` with `python3 -m scripts.stats.as_rules_corr`.
-Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/95>
 """
 import pandas as pd
 from scripts.csv_files import as_neighbors_vs_rules

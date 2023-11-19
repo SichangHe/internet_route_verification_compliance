@@ -1,6 +1,4 @@
 """Run at `scripts/` with `python3 -m scripts.stats.as_pair_all_some`.
-Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/94>
 
 Adopted from `as_all_some`.
 """

@@ -1,6 +1,4 @@
 """Run at `scripts/` with `python3 -m scripts.stats.route_all_some`.
-Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/88>
 """
 import pandas as pd
 from scripts.csv_files import route_stats

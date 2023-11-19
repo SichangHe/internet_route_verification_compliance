@@ -1,6 +1,4 @@
 """Run at `scripts/` with `python3 -m scripts.fig.route_port_stacked_area`.
-Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/88>
 
 Note that this takes > 6min.
 """

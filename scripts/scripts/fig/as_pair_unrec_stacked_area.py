@@ -1,6 +1,4 @@
 """Run at `scripts/` with `python3 -m scripts.fig.as_pair_unrec_stacked_area`.
-Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/94>
 
 Adopted from `as_unrec_stacked_area.py`.
 """

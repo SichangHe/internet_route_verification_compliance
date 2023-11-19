@@ -1,6 +1,4 @@
 """Run at `scripts/` with `python3 -m scripts.fig.route_spec_stacked_area`.
-Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/88>
 
 Adopted from `as_spec_stacked_area.py`.
 """

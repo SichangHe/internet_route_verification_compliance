@@ -1,6 +1,4 @@
 """Run at `scripts/` with `python3 -m scripts.fig.as_unrec_stacked_area`.
-Data are from here:
-<https://github.com/SichangHe/internet_route_verification/issues/89>
 """
 import matplotlib.pyplot as plt
 import pandas as pd
