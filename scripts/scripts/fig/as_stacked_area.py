@@ -54,13 +54,13 @@ def plot():
         ax.stackplot(
             indexes,
             values,
-            labels=[f"%{tag}" for tag in TAGS],
+            labels=[f"%OK", "%Skip", "%Unrec", "%Special", "%Error"],
         )
-        ax.set_xlabel("AS", fontsize=16)
-        ax.set_ylabel(f"Percentage of {key}", fontsize=16)
-        ax.tick_params(axis="both", labelsize=14)
+        ax.set_xlabel("AS", fontsize=36)
+        ax.set_ylabel(f"Percentage of {key}", fontsize=36)
+        ax.tick_params(axis="both", labelsize=32)
         ax.grid()
-        ax.legend(loc="lower left", fontsize=14)
+        ax.legend(loc="lower left", fontsize=36)
 
     # For checking.
     # figs["import"].show()

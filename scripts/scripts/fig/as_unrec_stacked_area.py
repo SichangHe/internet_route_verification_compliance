@@ -9,9 +9,9 @@ from scripts.fig import smart_sample
 
 FILE = as_stats
 TAGS = (
-    "unrec_import_empty",
-    "unrec_export_empty",
-    "unrec_aut_num",
+    # "unrec_import_empty",
+    # "unrec_export_empty",
+    # "unrec_aut_num",
     "unrec_as_set_route",
     "unrec_some_as_set_route",
     "unrec_as_set",
