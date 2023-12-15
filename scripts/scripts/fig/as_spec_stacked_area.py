@@ -39,10 +39,10 @@ def plot():
     d["%non_spec"] = 100.0 - (d["spec_rate"] * 100.0)
     for tag in TAGS:
         d[f"%{tag}"] = df[tag] / d["total_spec"] * 100.0 * d["spec_rate"]
-    d.replace(NaN, 0.0, inplace=True)
+    d.dropna(inplace=True)
     d.sort_values(
-        by=["%non_spec"] + [f"%{tag}" for tag in TAGS],
-        ascending=[True] + [False for _ in TAGS],
+        by=[f"%{tag}" for tag in TAGS] + ["%non_spec"],
+        ascending=[False for _ in TAGS] + [True],
         ignore_index=True,
         inplace=True,
     )
