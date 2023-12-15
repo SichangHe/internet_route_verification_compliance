@@ -4,10 +4,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+from numpy import NaN
 from scripts.csv_files import as_stats
 from scripts.fig import smart_sample
 
 FILE = as_stats
+PORTS = ("import", "export")
+LEVELS = ("ok", "skip", "unrec", "meh", "err")
 TAGS = (
     "spec_export_customers",
     "spec_as_is_origin_but_no_route",
@@ -24,17 +27,28 @@ TAGS = (
 def plot():
     df = pd.read_csv(FILE.path)
 
-    d = pd.DataFrame({"total": sum(df[tag] for tag in TAGS)})
+    d = pd.DataFrame(
+        {
+            "total_spec": sum(df[tag] for tag in TAGS),
+            "total_report": sum(
+                df[f"{port}_{level}"] for port in PORTS for level in LEVELS
+            ),
+        }
+    )
+    d["spec_rate"] = d["total_spec"] / d["total_report"]
+    d["%non_spec"] = 100.0 - (d["spec_rate"] * 100.0)
     for tag in TAGS:
-        d[f"%{tag}"] = df[tag] / d["total"] * 100.0
-    d.dropna(inplace=True)
-    d = d.sort_values(
-        by=[f"%{tag}" for tag in TAGS],
-        ascending=False,
+        d[f"%{tag}"] = df[tag] / d["total_spec"] * 100.0
+    d.replace(NaN, 0.0, inplace=True)
+    d.sort_values(
+        by=["%non_spec"] + [f"%{tag}" for tag in TAGS],
+        ascending=[True] + [False for _ in TAGS],
         ignore_index=True,
+        inplace=True,
     )
     indexes, values = smart_sample(
-        tuple(d[f"%{tag}"] for tag in TAGS), min_gap_frac=0.0003
+        tuple(d[f"%{tag}"] for tag in TAGS) + (d["%non_spec"],),
+        min_gap_frac=0.0003,
     )
 
     fig: Figure
@@ -44,7 +58,7 @@ def plot():
     ax.stackplot(
         indexes,
         values,
-        labels=[f"%{tag}" for tag in TAGS],
+        labels=[f"%{tag}" for tag in TAGS] + ["%Non-Special"],
     )
     ax.set_xlabel("AS", fontsize=16)
     ax.set_ylabel(f"Percentage of Special Case", fontsize=16)
