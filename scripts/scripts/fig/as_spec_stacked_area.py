@@ -38,7 +38,7 @@ def plot():
     d["spec_rate"] = d["total_spec"] / d["total_report"]
     d["%non_spec"] = 100.0 - (d["spec_rate"] * 100.0)
     for tag in TAGS:
-        d[f"%{tag}"] = df[tag] / d["total_spec"] * 100.0
+        d[f"%{tag}"] = df[tag] / d["total_spec"] * 100.0 * d["spec_rate"]
     d.replace(NaN, 0.0, inplace=True)
     d.sort_values(
         by=["%non_spec"] + [f"%{tag}" for tag in TAGS],
@@ -47,7 +47,7 @@ def plot():
         inplace=True,
     )
     indexes, values = smart_sample(
-        tuple(d[f"%{tag}"] for tag in TAGS) + (d["%non_spec"],),
+        tuple(d[f"%{tag}"] for tag in TAGS),
         min_gap_frac=0.0003,
     )
 
@@ -58,7 +58,7 @@ def plot():
     ax.stackplot(
         indexes,
         values,
-        labels=[f"%{tag}" for tag in TAGS] + ["%Non-Special"],
+        labels=[f"%{tag}" for tag in TAGS],
     )
     ax.set_xlabel("AS", fontsize=16)
     ax.set_ylabel(f"Percentage of Special Case", fontsize=16)
