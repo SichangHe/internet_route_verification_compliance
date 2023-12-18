@@ -59,7 +59,7 @@ def plot():
             values,
             labels=("%OK", "%Skip", "%Unrec", "%Special", "%Error"),
         )
-        ax.set_xlabel("AS Pair", fontsize=36)
+        ax.set_xlabel("AS Pair Ordered by Correctness", fontsize=36)
         ax.set_ylabel(f"Percentage of {y_label}", fontsize=36)
         ax.tick_params(axis="both", labelsize=32)
         ax.grid()

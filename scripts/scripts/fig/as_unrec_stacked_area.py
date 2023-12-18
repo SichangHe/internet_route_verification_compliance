@@ -70,7 +70,7 @@ def plot():
             # "%filter-set"
         ],
     )
-    ax.set_xlabel("AS", fontsize=36)
+    ax.set_xlabel("AS Ordered by Associated Unrecorded Case", fontsize=36)
     ax.set_ylabel(f"Percentage of Unrecorded Case", fontsize=36)
     ax.tick_params(axis="both", labelsize=32)
     ax.grid()
