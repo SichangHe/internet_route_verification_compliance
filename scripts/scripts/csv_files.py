@@ -11,8 +11,8 @@ as_pair_stats = CsvFile(
 )
 """From <https://github.com/SichangHe/internet_route_verification/pull/101>."""
 as_stats = CsvFile(
-    "as_stats2.csv",
-    "https://github.com/SichangHe/internet_route_verification/files/13389792/as_stats2.csv",
+    "as_stats3.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13684870/as_stats3.csv",
 )
 """From <https://github.com/SichangHe/internet_route_verification/pull/101>."""
 route_stats = CsvFile(

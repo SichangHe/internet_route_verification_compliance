@@ -8,6 +8,8 @@ from scripts.csv_files import as_stats
 from scripts.fig import smart_sample
 
 FILE = as_stats
+PORTS = ("import", "export")
+LEVELS = ("ok", "skip", "unrec", "meh", "err")
 TAGS = (
     "spec_export_customers",
     "spec_as_is_origin_but_no_route",
@@ -24,17 +26,28 @@ TAGS = (
 def plot():
     df = pd.read_csv(FILE.path)
 
-    d = pd.DataFrame({"total": sum(df[tag] for tag in TAGS)})
+    d = pd.DataFrame(
+        {
+            "total_spec": sum(df[tag] for tag in TAGS),
+            "total_report": sum(
+                df[f"{port}_{level}"] for port in PORTS for level in LEVELS
+            ),
+        }
+    )
+    d["spec_rate"] = d["total_spec"] / d["total_report"]
+    d["%non_spec"] = 100.0 - (d["spec_rate"] * 100.0)
     for tag in TAGS:
-        d[f"%{tag}"] = df[tag] / d["total"] * 100.0
+        d[f"%{tag}"] = df[tag] / d["total_spec"] * 100.0 * d["spec_rate"]
     d.dropna(inplace=True)
-    d = d.sort_values(
-        by=[f"%{tag}" for tag in TAGS],
-        ascending=False,
+    d.sort_values(
+        by=[f"%{tag}" for tag in TAGS] + ["%non_spec"],
+        ascending=[False for _ in TAGS] + [True],
         ignore_index=True,
+        inplace=True,
     )
     indexes, values = smart_sample(
-        tuple(d[f"%{tag}"] for tag in TAGS), min_gap_frac=0.0003
+        tuple(d[f"%{tag}"] for tag in TAGS),
+        min_gap_frac=0.0003,
     )
 
     fig: Figure
