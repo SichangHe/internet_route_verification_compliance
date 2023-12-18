@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
-from numpy import NaN
 from scripts.csv_files import as_stats
 from scripts.fig import smart_sample
 
