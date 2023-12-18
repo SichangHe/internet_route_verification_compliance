@@ -43,7 +43,10 @@ def plot():
         inplace=True,
     )
     dfs["exchange"] = d
-    for key, d in dfs.items():
+    for (key, d), y_label in zip(
+        dfs.items(),
+        ("Import", "Export", "Import/Export"),
+    ):
         indexes, values = smart_sample(
             tuple(d[f"%{tag}"] for tag in TAGS), min_gap_frac=0.0002
         )
@@ -54,13 +57,13 @@ def plot():
         ax.stackplot(
             indexes,
             values,
-            labels=[f"%{tag}" for tag in TAGS],
+            labels=("%OK", "%Skip", "%Unrec", "%Special", "%Error"),
         )
-        ax.set_xlabel("AS Pair", fontsize=16)
-        ax.set_ylabel(f"Percentage of {key}", fontsize=16)
-        ax.tick_params(axis="both", labelsize=14)
+        ax.set_xlabel("AS Pair", fontsize=36)
+        ax.set_ylabel(f"Percentage of {y_label}", fontsize=36)
+        ax.tick_params(axis="both", labelsize=32)
         ax.grid()
-        ax.legend(loc="lower left", fontsize=14)
+        ax.legend(loc="lower left", fontsize=36)
 
     # For checking.
     # figs["import"].show()
@@ -75,7 +78,7 @@ def main():
     for key, fig in figs.items():
         pdf_name = f"AS-pair-{key}-percentages-stacked-area.pdf"
         fig.savefig(pdf_name, bbox_inches="tight")
-        fig.set_size_inches(8, 6)
+        fig.set_size_inches(12, 9)
         fig.savefig(pdf_name.replace(".pdf", "-squared.pdf"), bbox_inches="tight")
 
 

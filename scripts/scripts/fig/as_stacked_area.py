@@ -10,7 +10,6 @@ from scripts.fig import smart_sample
 FILE = as_stats
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
-LABELS = ("Import", "Export", "Import/Export")
 
 
 def plot():
@@ -44,7 +43,10 @@ def plot():
         inplace=True,
     )
     dfs["exchange"] = d
-    for (key, d), label in zip(dfs.items(),LABELS):
+    for (key, d), y_label in zip(
+        dfs.items(),
+        ("Import", "Export", "Import/Export"),
+    ):
         indexes, values = smart_sample(
             tuple(d[f"%{tag}"] for tag in TAGS), min_gap_frac=0.0003
         )
@@ -55,10 +57,10 @@ def plot():
         ax.stackplot(
             indexes,
             values,
-            labels=[f"%OK", "%Skip", "%Unrec", "%Special", "%Error"],
+            labels=("%OK", "%Skip", "%Unrec", "%Special", "%Error"),
         )
         ax.set_xlabel("AS", fontsize=36)
-        ax.set_ylabel(f"Percentage of {label}", fontsize=36)
+        ax.set_ylabel(f"Percentage of {y_label}", fontsize=36)
         ax.tick_params(axis="both", labelsize=32)
         ax.grid()
         ax.legend(loc="lower center", fontsize=36)
