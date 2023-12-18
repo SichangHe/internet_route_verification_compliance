@@ -57,13 +57,24 @@ def plot():
     ax.stackplot(
         indexes,
         values,
-        labels=[f"%{tag}" for tag in TAGS],
+        labels=[
+            "%Import Rule",
+            "%Export Rule",
+            "%aut-num",
+            "%as-set Route",
+            "%∃as-set Route",
+            "%as-set",
+            "%AS Route",
+            "%route-set",
+            # "%peering-set"
+            # "%filter-set"
+        ],
     )
-    ax.set_xlabel("AS", fontsize=16)
-    ax.set_ylabel(f"Percentage of Unrecorded Case", fontsize=16)
-    ax.tick_params(axis="both", labelsize=14)
+    ax.set_xlabel("AS", fontsize=36)
+    ax.set_ylabel(f"Percentage of Unrecorded Case", fontsize=36)
+    ax.tick_params(axis="both", labelsize=32)
     ax.grid()
-    ax.legend(loc="lower center", fontsize=14)
+    ax.legend(loc="lower center", fontsize=36)
 
     # For checking.
     # fig.show()
@@ -77,7 +88,7 @@ def main():
 
     pdf_name = f"AS-unrec-case-percentages-stacked-area.pdf"
     fig.savefig(pdf_name, bbox_inches="tight")
-    fig.set_size_inches(8, 6)
+    fig.set_size_inches(12, 9)
     fig.savefig(pdf_name.replace(".pdf", "-squared.pdf"), bbox_inches="tight")
 
 
