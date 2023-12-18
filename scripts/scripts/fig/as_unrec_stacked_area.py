@@ -8,10 +8,12 @@ from scripts.csv_files import as_stats
 from scripts.fig import smart_sample
 
 FILE = as_stats
+PORTS = ("import", "export")
+LEVELS = ("ok", "skip", "unrec", "meh", "err")
 TAGS = (
-    # "unrec_import_empty",
-    # "unrec_export_empty",
-    # "unrec_aut_num",
+    "unrec_import_empty",
+    "unrec_export_empty",
+    "unrec_aut_num",
     "unrec_as_set_route",
     "unrec_some_as_set_route",
     "unrec_as_set",
@@ -25,14 +27,24 @@ TAGS = (
 def plot():
     df = pd.read_csv(FILE.path)
 
-    d = pd.DataFrame({"total": sum(df[tag] for tag in TAGS)})
+    d = pd.DataFrame(
+        {
+            "total_unrec": sum(df[tag] for tag in TAGS),
+            "total_report": sum(
+                df[f"{port}_{level}"] for port in PORTS for level in LEVELS
+            ),
+        }
+    )
+    d["unrec_rate"] = d["total_unrec"] / d["total_report"]
+    d["%non_unrec"] = 100.0 - (d["unrec_rate"] * 100.0)
     for tag in TAGS:
-        d[f"%{tag}"] = df[tag] / d["total"] * 100.0
+        d[f"%{tag}"] = df[tag] / d["total_unrec"] * 100.0 * d["unrec_rate"]
     d.dropna(inplace=True)
-    d = d.sort_values(
-        by=[f"%{tag}" for tag in TAGS],
-        ascending=False,
+    d.sort_values(
+        by=[f"%{tag}" for tag in TAGS] + ["%non_unrec"],
+        ascending=[False for _ in TAGS] + [True],
         ignore_index=True,
+        inplace=True,
     )
     indexes, values = smart_sample(
         tuple(d[f"%{tag}"] for tag in TAGS), min_gap_frac=0.0002
