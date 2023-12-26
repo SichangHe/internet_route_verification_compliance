@@ -25,7 +25,13 @@ TAGS = (
 
 
 def plot():
-    df = pd.read_csv(FILE.path)
+    df = pd.read_csv(
+        FILE.path,
+        index_col="aut_num",
+        usecols=[f"{port}_{level}" for port in PORTS for level in LEVELS]
+        + list(TAGS)
+        + ["aut_num"],
+    )
 
     d = pd.DataFrame(
         {

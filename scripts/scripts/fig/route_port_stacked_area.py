@@ -15,7 +15,11 @@ TAGS = ("ok", "skip", "unrec", "meh", "err")
 
 
 def plot():
-    df = pd.read_csv(FILE.path, dtype="uint16")
+    df = pd.read_csv(
+        FILE.path,
+        dtype="uint16",
+        usecols=[f"{port}_{tag}" for port in PORTS for tag in TAGS],
+    )
 
     dfs: dict[str, pd.DataFrame] = {}
     figs: dict[str, Figure] = {}

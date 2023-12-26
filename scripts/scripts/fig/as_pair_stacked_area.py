@@ -13,14 +13,17 @@ TAGS = ("ok", "skip", "unrec", "meh", "err")
 
 
 def plot():
-    df = pd.read_csv(FILE.path)
+    df = pd.read_csv(
+        FILE.path,
+        index_col=["from", "to"],
+        usecols=["from", "to"] + [f"{port}_{tag}" for port in PORTS for tag in TAGS],
+    )
 
     dfs: dict[str, pd.DataFrame] = {}
     figs: dict[str, Figure] = {}
     axs: dict[str, Axes] = {}
     for port in PORTS:
-        d = df[["from", "to"]].copy()
-        d["total"] = sum(df[f"{port}_{tag}"] for tag in TAGS)
+        d = pd.DataFrame({"total": sum(df[f"{port}_{tag}"] for tag in TAGS)})
         for tag in TAGS:
             d[f"%{tag}"] = df[f"{port}_{tag}"] / d["total"] * 100.0
         d.dropna(inplace=True)
@@ -31,8 +34,9 @@ def plot():
             inplace=True,
         )
         dfs[port] = d
-    d = df[["from", "to"]].copy()
-    d["total"] = sum(df[f"{port}_{tag}"] for tag in TAGS for port in PORTS)
+    d = pd.DataFrame(
+        {"total": sum(df[f"{port}_{tag}"] for tag in TAGS for port in PORTS)}
+    )
     for tag in TAGS:
         d[f"%{tag}"] = sum(df[f"{port}_{tag}"] for port in PORTS) / d["total"] * 100.0
     d.dropna(inplace=True)
