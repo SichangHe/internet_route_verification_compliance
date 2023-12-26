@@ -1,26 +1,38 @@
-"""Run at `scripts/` with `python3 -m scripts.fig.route_port_stacked_area`.
-
-Note that this takes > 6min.
+"""Run at `scripts/` with `python3 -m scripts.fig.as_all_stacked_area`.
 """
+from concurrent import futures
+
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
-from scripts.csv_files import route_stats
+from scripts.csv_files import as_stats_all
 from scripts.fig import smart_sample
 
-FILE = route_stats
+from scripts import CsvFile
+
+FILES = as_stats_all
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
 
 
-def plot():
-    df = pd.read_csv(
-        FILE.path,
-        dtype="uint16",
-        usecols=[f"{port}_{tag}" for port in PORTS for tag in TAGS],
+def read_as_stats(file: CsvFile):
+    return pd.read_csv(
+        file.path,
+        dtype="uint",
+        index_col="aut_num",
+        usecols=["aut_num"] + [f"{port}_{tag}" for port in PORTS for tag in TAGS],
         engine="pyarrow",
     )
+
+
+def plot():
+    with futures.ProcessPoolExecutor() as executor:
+        df = (
+            pd.concat(executor.map(read_as_stats, FILES), copy=False)
+            .groupby("aut_num")
+            .sum(engine="pyarrow")
+        )
 
     dfs: dict[str, pd.DataFrame] = {}
     figs: dict[str, Figure] = {}
@@ -54,7 +66,9 @@ def plot():
         dfs.items(),
         ("Import", "Export", "Import/Export"),
     ):
-        indexes, values = smart_sample(tuple(d[f"%{tag}"] for tag in TAGS))
+        indexes, values = smart_sample(
+            tuple(d[f"%{tag}"] for tag in TAGS), min_gap_frac=0.0003
+        )
 
         fig, ax = plt.subplots(figsize=(16, 9))
         figs[key], axs[key] = fig, ax
@@ -64,11 +78,11 @@ def plot():
             values,
             labels=("%OK", "%Skip", "%Unrec", "%Special", "%Error"),
         )
-        ax.set_xlabel("Route Ordered by Correctness", fontsize=36)
+        ax.set_xlabel("AS Ordered by Correctness", fontsize=36)
         ax.set_ylabel(f"Percentage of {y_label}", fontsize=36)
         ax.tick_params(axis="both", labelsize=32)
         ax.grid()
-        ax.legend(loc="lower left", fontsize=36)
+        ax.legend(loc="lower center", fontsize=36)
 
     # For checking.
     # figs["import"].show()
@@ -77,11 +91,13 @@ def plot():
 
 
 def main():
-    FILE.download_if_missing()
+    with futures.ThreadPoolExecutor() as executor:
+        executor.map(CsvFile.download_if_missing, FILES)
+
     figs, _, _ = plot()
 
     for key, fig in figs.items():
-        pdf_name = f"route-{key}-percentages-stacked-area.pdf"
+        pdf_name = f"AS-all-{key}-percentages-stacked-area.pdf"
         fig.savefig(pdf_name, bbox_inches="tight")
         fig.set_size_inches(12, 9)
         fig.savefig(pdf_name.replace(".pdf", "-squared.pdf"), bbox_inches="tight")
