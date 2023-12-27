@@ -484,12 +484,6 @@ impl<'a> IntoIterator for &'a Stats {
     }
 }
 
-impl Default for Stats {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 fn main() {
     let stats = Stats::new();
 
@@ -500,15 +494,16 @@ fn main() {
             if path.ends_with(".gz") {
                 let file = BufReader::new(GzDecoder::new(file));
                 process_file(file, stats.clone())
-                    .with_context(|| format!("Failed to process file {}", path))
+                    .with_context(|| format!("Failed to process file {}", path))?;
+                println!("Processed `{}`", path);
             } else {
                 let file = BufReader::new(file);
                 process_file(file, stats.clone())
                     .with_context(|| format!("Failed to process file {}", path))?;
                 println!("Processed `{}`", path);
-
-                Ok(())
             }
+
+            Ok(())
         })
         .collect::<Result<()>>()
         .unwrap();
