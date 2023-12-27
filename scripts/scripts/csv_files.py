@@ -740,3 +740,19 @@ route_stats_all = [
     ),
 ]
 """From <https://github.com/SichangHe/internet_route_verification/issues/116>."""
+
+route_all_import_stats = CsvFile(
+    "route_all_import_stats.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13775372/route_all_import_stats.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/88>."""
+route_all_export_stats = CsvFile(
+    "route_all_export_stats.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13775371/route_all_export_stats.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/88>."""
+route_all_total_stats = CsvFile(
+    "route_all_total_stats.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13775373/route_all_total_stats.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/88>."""
