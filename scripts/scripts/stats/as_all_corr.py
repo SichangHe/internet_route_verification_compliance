@@ -1,12 +1,24 @@
 """Run at `scripts/` with `python3 -m scripts.stats.as_all_corr`.
 """
+from concurrent import futures
+
 import pandas as pd
-from scripts.csv_files import as_neighbors_vs_rules, as_stats
+from scripts.csv_files import as_neighbors_vs_rules, as_stats_all
+
+from scripts import CsvFile
 
 NEIGHBORS = ("provider", "peer", "customer")
 RULES = ("import", "export")
 PORTS = ("import", "export")
 TAGS = ("ok", "skip", "unrec", "meh", "err")
+
+
+def read_as_stats(file: CsvFile):
+    return pd.read_csv(
+        file.path,
+        dtype="uint",
+        engine="pyarrow",
+    )
 
 
 def main():
@@ -16,13 +28,21 @@ def main():
     anr = anr_raw.drop(
         anr_raw[(anr_raw["import"] == -1) | (anr_raw["provider"] == -1)].index
     )
-    as_stats.download_if_missing()
-    asst = pd.read_csv(as_stats.path)
+
+    with futures.ThreadPoolExecutor() as executor:
+        executor.map(CsvFile.download_if_missing, as_stats_all)
+    with futures.ProcessPoolExecutor() as executor:
+        asst = (
+            pd.concat(executor.map(read_as_stats, as_stats_all), copy=False)
+            .groupby("aut_num")
+            .sum(engine="pyarrow")
+        )
 
     df = asst.merge(anr, on="aut_num")
 
     df["neighbor"] = sum(df[neighbor] for neighbor in NEIGHBORS)
     df["rules"] = sum(df[rule] for rule in RULES)
+    df["rule_by_neighbor"] = df["rules"] / df["neighbor"]
 
     for port in PORTS:
         df[f"{port}_total"] = sum(df[f"{port}_{tag}"] for tag in TAGS)
@@ -48,6 +68,7 @@ def main():
     corr_df = pd.DataFrame(
         correlation_pairs, columns=["Column1", "Column2", "Correlation"]
     )
+    corr_df.dropna(inplace=True)  # Rid invariances.
 
     print("All Pearson correlations coefficients:")
     print(corr_df.to_string())

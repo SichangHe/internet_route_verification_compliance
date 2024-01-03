@@ -4,7 +4,8 @@ as_neighbors_vs_rules = CsvFile(
     "as_neighbors_vs_rules3.csv",
     "https://github.com/SichangHe/internet_route_verification/files/13401797/as_neighbors_vs_rules3.csv",
 )
-"""From <https://github.com/SichangHe/internet_route_verification/pull/101>."""
+"""From <https://github.com/SichangHe/internet_route_verification/pull/101>.
+No longer latest after dropping some IRRs, but should be very close."""
 as_pair_stats = CsvFile(
     "as_pair_stats2.csv.gz",
     "https://github.com/SichangHe/internet_route_verification/files/13391593/as_pair_stats2.csv.gz",
