@@ -107,7 +107,7 @@ def main():
 
     fig, _, _ = plot()
 
-    pdf_name = f"AS-special-case-percentages-stacked-area.pdf"
+    pdf_name = f"AS-all-special-case-percentages-stacked-area.pdf"
     fig.savefig(pdf_name, bbox_inches="tight")
     fig.set_size_inches(12, 9)
     fig.savefig(pdf_name.replace(".pdf", "-squared.pdf"), bbox_inches="tight")
