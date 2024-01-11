@@ -1,8 +1,8 @@
 from scripts import CsvFile
 
 as_neighbors_vs_rules = CsvFile(
-    "as_neighbors_vs_rules3.csv",
-    "https://github.com/SichangHe/internet_route_verification/files/13401797/as_neighbors_vs_rules3.csv",
+    "as_neighbors_vs_rules4.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13895627/as_neighbors_vs_rules4.csv",
 )
 """From <https://github.com/SichangHe/internet_route_verification/pull/120>."""
 as_pair_stats = CsvFile(
@@ -14,13 +14,12 @@ as_stats = CsvFile(
     "as_stats4.csv",
     "https://github.com/SichangHe/internet_route_verification/files/13884360/as_stats4.csv",
 )
-"""From <https://github.com/SichangHe/internet_route_verification/pull/101>.
-No longer up-to-date."""
+"""From <https://github.com/SichangHe/internet_route_verification/pull/120>."""
 route_stats = CsvFile(
-    "route_stats2.csv.gz",
-    "https://github.com/SichangHe/internet_route_verification/releases/download/data-101/route_stats2.csv.gz",
+    "route_stats4.csv.gz",
+    "https://github.com/SichangHe/internet_route_verification/releases/download/data-120/route_stats4.csv.gz",
 )
-"""From <https://github.com/SichangHe/internet_route_verification/pull/101>."""
+"""From <https://github.com/SichangHe/internet_route_verification/pull/120>."""
 
 as_stats_all = [
     CsvFile(

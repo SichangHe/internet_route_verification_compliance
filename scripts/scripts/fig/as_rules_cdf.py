@@ -19,14 +19,14 @@ def plot():
     ax: Axes
     fig, ax = plt.subplots(figsize=(16, 9))
     fig.tight_layout()
-    ax.ecdf(df["rules"], complementary=True, label="CCDF")
+    ax.ecdf(df["rules"], complementary=True, linewidth=4, label="CCDF of ASes")
     ax.set_xscale("log")
     ax.set_yscale("log")
-    ax.set_xlabel("Number of Import and Export Rules by Controlling AS", fontsize=16)
-    ax.set_ylabel("Complementary Cumulative Fraction of ASes", fontsize=16)
-    ax.tick_params(axis="both", labelsize=14)
+    ax.set_xlabel("Number of Import/Export Rules by Controlling AS", fontsize=36)
+    ax.set_ylabel("Complementary Cumulative Fraction", fontsize=31)
+    ax.tick_params(axis="both", labelsize=32)
     ax.grid()
-    ax.legend(loc="best", fontsize=14)
+    ax.legend(loc="best", fontsize=36)
 
     # For checking.
     # fig.show()
@@ -40,7 +40,7 @@ def main():
 
     pdf_name = "CDF-AS-rules.pdf"
     fig.savefig(pdf_name, bbox_inches="tight")
-    fig.set_size_inches(8, 6)
+    fig.set_size_inches(12, 9)
     fig.savefig(pdf_name.replace(".pdf", "-squared.pdf"), bbox_inches="tight")
 
 
