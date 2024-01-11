@@ -22,11 +22,11 @@ def plot():
     ax.ecdf(df["rules"], complementary=True, linewidth=4, label="CCDF")
     ax.set_xscale("log")
     ax.set_yscale("log")
-    ax.set_xlabel("Number of Import/Export Rules by Controlling AS  ", fontsize=36)
-    ax.set_ylabel("Complementary Fraction of ASes   ", fontsize=36)
+    ax.set_xlabel("Number of Import/Export Rules", fontsize=36)
+    ax.set_ylabel("Complementary Cumulative\nFraction of ASes", fontsize=36)
     ax.tick_params(axis="both", labelsize=32)
     ax.grid()
-    ax.legend(loc="best", fontsize=36)
+    # ax.legend(loc="best", fontsize=36)
 
     # For checking.
     # fig.show()
