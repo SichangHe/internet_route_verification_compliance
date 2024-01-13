@@ -82,7 +82,7 @@ def plot():
         ax.set_ylabel(f"Percentage of {y_label}", fontsize=36)
         ax.tick_params(axis="both", labelsize=32)
         ax.grid()
-        ax.legend(loc="lower left", fontsize=36)
+        ax.legend(loc="best", fontsize=36)
 
     # For checking.
     # figs["import"].show()
