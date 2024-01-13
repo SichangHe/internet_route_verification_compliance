@@ -742,18 +742,18 @@ route_stats_all = [
 """From <https://github.com/SichangHe/internet_route_verification/issues/116>."""
 
 route_all_import_stats = CsvFile(
-    "route_all_import_stats.csv",
-    "https://github.com/SichangHe/internet_route_verification/files/13775372/route_all_import_stats.csv",
+    "route_all_import_stats1.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13926591/route_all_total_stats1.csv",
 )
 """From <https://github.com/SichangHe/internet_route_verification/issues/88>."""
 route_all_export_stats = CsvFile(
-    "route_all_export_stats.csv",
-    "https://github.com/SichangHe/internet_route_verification/files/13775371/route_all_export_stats.csv",
+    "route_all_export_stats1.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13926592/route_all_export_stats1.csv",
 )
 """From <https://github.com/SichangHe/internet_route_verification/issues/88>."""
 route_all_total_stats = CsvFile(
-    "route_all_total_stats.csv",
-    "https://github.com/SichangHe/internet_route_verification/files/13775373/route_all_total_stats.csv",
+    "route_all_total_stats1.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/13926593/route_all_import_stats1.csv",
 )
 """From <https://github.com/SichangHe/internet_route_verification/issues/88>."""
 
