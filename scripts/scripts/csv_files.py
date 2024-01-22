@@ -762,3 +762,9 @@ as_set_sizes = CsvFile(
     "https://github.com/SichangHe/internet_route_verification/files/13885027/as_set_sizes2.csv.gz",
 )
 """From <https://github.com/SichangHe/internet_route_verification/issues/114>."""
+
+as_set_graph_stats = CsvFile(
+    "as_set_graph_stats.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/14004282/as_set_graph_stats.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/114>."""
