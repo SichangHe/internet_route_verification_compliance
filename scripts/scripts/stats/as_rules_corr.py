@@ -31,6 +31,18 @@ def main():
             )
             print(f"{corrs}: between {neighbor} and {rule}.")
 
+    df = df[df["customer"] >= 5]
+    print("Filtering only transit ASes with at least 5 customers, Pearson, Kendall Tau, and Spearman rank correlation.")
+    for neighbor in neighbors:
+        for rule in rules:
+            corrs = ", ".join(
+                [
+                    f"{df[neighbor].corr(df[rule], method=method):.3f}"
+                    for method in ("pearson", "kendall", "spearman")
+                ]
+            )
+            print(f"{corrs}: between {neighbor} and {rule}.")
+
 
 if __name__ == "__main__":
     main()
