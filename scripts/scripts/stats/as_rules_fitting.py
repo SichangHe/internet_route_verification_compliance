@@ -5,6 +5,7 @@ WIP
 
 import pandas as pd
 from fitter import Fitter
+
 from scripts.csv_files import as_neighbors_vs_rules
 
 FILE = as_neighbors_vs_rules

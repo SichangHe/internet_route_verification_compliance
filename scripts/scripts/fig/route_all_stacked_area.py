@@ -1,18 +1,19 @@
 """Run at `scripts/` with `python3 -m scripts.fig.route_all_stacked_area`.
 """
+
 from concurrent import futures
 
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+
+from scripts import CsvFile
 from scripts.csv_files import (
     route_all_export_stats,
     route_all_import_stats,
     route_all_total_stats,
 )
-
-from scripts import CsvFile
 
 FILES = (route_all_import_stats, route_all_export_stats, route_all_total_stats)
 PORTS = ("import", "export")

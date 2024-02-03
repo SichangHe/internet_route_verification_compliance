@@ -1,15 +1,16 @@
 """Run at `scripts/` with `python3 -m scripts.fig.as_unrec_all_stacked_area`.
 """
+
 from concurrent import futures
 
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
-from scripts.csv_files import as_stats_all
-from scripts.fig import smart_sample
 
 from scripts import CsvFile
+from scripts.csv_files import as_stats_all
+from scripts.fig import smart_sample
 
 FILES = as_stats_all
 PORTS = ("import", "export")

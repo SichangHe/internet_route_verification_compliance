@@ -2,10 +2,12 @@
 
 Adopted from `as_unrec_stacked_area.py`.
 """
+
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+
 from scripts.csv_files import as_pair_stats
 from scripts.fig import smart_sample
 

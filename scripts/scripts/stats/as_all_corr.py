@@ -1,11 +1,12 @@
 """Run at `scripts/` with `python3 -m scripts.stats.as_all_corr`.
 """
+
 from concurrent import futures
 
 import pandas as pd
-from scripts.csv_files import as_neighbors_vs_rules, as_stats_all
 
 from scripts import CsvFile
+from scripts.csv_files import as_neighbors_vs_rules, as_stats_all
 
 NEIGHBORS = ("provider", "peer", "customer")
 RULES = ("import", "export")
