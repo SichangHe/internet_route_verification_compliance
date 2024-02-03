@@ -1,5 +1,6 @@
 """Run at `scripts/` with `python3 -m scripts.stats.as_rules_corr`.
 """
+
 import pandas as pd
 from scripts.csv_files import as_neighbors_vs_rules
 
@@ -31,9 +32,9 @@ def main():
             )
             print(f"{corrs}: between {neighbor} and {rule}.")
 
-    df = df[df["customer"] >= 5]
+    df = df[(df["customer"] >= 5) & (df["rules"] > 0)]
     print(
-        "Filtering only transit ASes with at least 5 customers, Pearson, Kendall Tau, and Spearman rank correlation."
+        "Filtering only transit ASes with at least 5 customers and 1 rule, Pearson, Kendall Tau, and Spearman rank correlation."
     )
     for neighbor in neighbors:
         for rule in rules:
