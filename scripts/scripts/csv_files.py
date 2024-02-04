@@ -768,3 +768,33 @@ as_set_graph_stats = CsvFile(
     "https://github.com/SichangHe/internet_route_verification/files/14004282/as_set_graph_stats.csv",
 )
 """From <https://github.com/SichangHe/internet_route_verification/issues/114>."""
+
+as_num_appearances_in_rules = CsvFile(
+    "as_num_appearances_in_rules.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/14124410/as_num_appearances_in_rules.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/123>"""
+
+as_set_appearances_in_rules = CsvFile(
+    "as_set_appearances_in_rules.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/14124411/as_set_appearances_in_rules.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/123>"""
+
+filter_set_appearances_in_rules = CsvFile(
+    "filter_set_appearances_in_rules.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/14124421/filter_set_appearances_in_rules.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/123>"""
+
+peering_set_appearances_in_rules = CsvFile(
+    "peering_set_appearances_in_rules.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/14124422/peering_set_appearances_in_rules.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/123>"""
+
+route_set_appearances_in_rules = CsvFile(
+    "route_set_appearances_in_rules.csv",
+    "https://github.com/SichangHe/internet_route_verification/files/14124425/route_set_appearances_in_rules.csv",
+)
+"""From <https://github.com/SichangHe/internet_route_verification/issues/123>"""
