@@ -3,19 +3,18 @@
 import pandas as pd
 from scipy.stats import fit, zipf
 from scipy.stats._fit import FitResult
-
 from scripts.csv_files import as_set_graph_stats
 
 FILE = as_set_graph_stats
 
 
-def main():
+def main() -> None:
     FILE.download_if_missing()
     df_raw = pd.read_csv(FILE.path)
     df_wo_hash = df_raw[~df_raw["as_set"].str.contains("#")]
     total = len(df_wo_hash)
     print("Overview:")
-    print(df_wo_hash.describe().applymap("{0:.2f}".format))
+    print(df_wo_hash.describe().map("{0:.2f}".format))
 
     print("\nAS Set sizes in AS Num counts.")
     df = df_wo_hash[df_wo_hash["n_nums"] > 0]
@@ -40,8 +39,11 @@ def main():
     df = df_wo_hash[df_wo_hash["n_sets"] > 0]
     total = len(df)
     n_w_cycle = len(df[df["has_cycle"]])
+    n_w_depth_5 = len(df[df["depth"] >= 5])
     print(
-        f"{n_w_cycle} ({(n_w_cycle * 100 / total):.2f}%) have cycles among {total} AS Sets containing other AS Sets."
+        f"{n_w_cycle} ({(n_w_cycle * 100 / total):.2f}%) have cycles, \
+{n_w_depth_5} ({(n_w_depth_5 * 100 / total):.2f}%) have depth 5 or more, \
+among {total} AS Sets containing other AS Sets."
     )
 
 
